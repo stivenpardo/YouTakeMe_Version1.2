@@ -1,0 +1,13 @@
+{
+    "vehiculos":[
+        {
+            "tipoVehiculo": "moto, carro, taxi",
+            "placa":"ABCD123",
+            "modelo":"2019",
+            "fotoCarro":""
+            
+
+        }
+
+    ]
+}
