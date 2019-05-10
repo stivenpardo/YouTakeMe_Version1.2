@@ -12,6 +12,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
+import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
 
 //my Components
 import theme from '../theme2';
@@ -19,7 +21,10 @@ import RegisterVehicule from './RegisterVehicule/RegisterVehicule';
 import RegisterPath from './RegisterPath';
 import SelectPath from './SelectPaths/SelectPaths'
 import Singin from './Singin';
-import  firebase from "firebase";
+import firebase from "firebase";
+//import IconFacebook from '../Images/IconFacebook.png'
+//import IconGoogle from '../Images/IconGoogle.png'
+
 //import Book from '../data/stories.json';
 
 class MainConcent extends React.Component {
@@ -212,7 +217,18 @@ class MainConcent extends React.Component {
                     </Grid>
                     
                     <Grid container  direction="row" justify="flex-start" alignItems="flex-start"  style={styles.ContentMain}>
-                        <Paper> dfdsfdsfsd</Paper>    
+                        <Paper> 
+                                <Typography> Iniciar Sesicion Con  </Typography>
+                                <Fab variant="extended" aria-label="Delete" >
+                                    <NavigationIcon  />
+                                        Inicia Sesion con Facebook
+                                </Fab>
+                                <Fab variant="extended" aria-label="Delete" >
+                                    <NavigationIcon />
+                                        Inicia Sesion con Google
+                                </Fab>
+                                
+                        </Paper>    
                     </Grid>
                                                 
                 </Grid>

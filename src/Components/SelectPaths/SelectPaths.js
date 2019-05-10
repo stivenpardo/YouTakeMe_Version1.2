@@ -17,7 +17,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 //.. forder Imagenes
-import CarroUsr1 from '../../Imagenes/CarroUsr1.jpg';
+
 
 class SelectPath extends React.Component {
     constructor(props) {
@@ -52,7 +52,7 @@ class SelectPath extends React.Component {
                                 subheader="Fecha y hora actualizada cuando habilita la ruta "
                             />
                             <CardMedia
-                                image="../../Imagenes/CarroUsr1.jpg"
+                                image=""
                                 title="Paella dish"
                             />
                             <CardContent>
