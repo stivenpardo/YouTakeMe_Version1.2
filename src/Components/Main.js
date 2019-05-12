@@ -223,10 +223,7 @@ class MainConcent extends React.Component {
                                     <NavigationIcon  />
                                         Inicia Sesion con Facebook
                                 </Fab>
-                                <Fab variant="extended" aria-label="Delete" >
-                                    <NavigationIcon />
-                                        Inicia Sesion con Google
-                                </Fab>
+                                
                                 
                         </Paper>    
                     </Grid>
