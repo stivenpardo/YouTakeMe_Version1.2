@@ -65,7 +65,7 @@ class FormRegisterVehicule extends React.Component {
         return (
             <div>
                 <Grid container item xs="12">
-                  <Grid item xs="12">                   
+                  <Grid item xs="12" container  direction="row" justify="flex-start" alignItems="flex-start"  style={styles.ContentMain}>                   
                     <FormControl>
                       <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
                       <Select

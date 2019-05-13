@@ -58,6 +58,7 @@ class MainConcent extends React.Component {
       }
   
       renderInformation(){
+          console.log(this.state.view);
         switch(this.state.view){
             case 'Benficios':
                 return(<div>Beneficios</div>);   
@@ -70,6 +71,14 @@ class MainConcent extends React.Component {
             case 'Singin':
                 return (<Singin/>)            
             default:
+                return (<div style={}><Paper> 
+                    <Typography> Iniciar Sesicion Con  </Typography>
+                    <Fab variant="extended" aria-label="Delete" >
+                        <NavigationIcon  />
+                            Inicia Sesion con Facebook
+                    </Fab>           
+                    
+            </Paper> </div>)
 
         }
 
@@ -216,17 +225,7 @@ class MainConcent extends React.Component {
                                 }
                     </Grid>
                     
-                    <Grid container  direction="row" justify="flex-start" alignItems="flex-start"  style={styles.ContentMain}>
-                        <Paper> 
-                                <Typography> Iniciar Sesicion Con  </Typography>
-                                <Fab variant="extended" aria-label="Delete" >
-                                    <NavigationIcon  />
-                                        Inicia Sesion con Facebook
-                                </Fab>
-                                
-                                
-                        </Paper>    
-                    </Grid>
+
                                                 
                 </Grid>
             </>

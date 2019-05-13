@@ -109,6 +109,10 @@ const theme = createMuiTheme({
       height:400,
       width:600,
     },
+    defaultLogin:{
+      width:'45%',
+      height:'50%'
+    }
   }
 });
 
