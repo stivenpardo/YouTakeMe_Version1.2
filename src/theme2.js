@@ -102,10 +102,8 @@ const theme = createMuiTheme({
        marginTop: theme.spacing.unit,
        marginBottom: theme.spacing.unit,
      },  */
-    map: {
-      /*width: 100,
-      height: 28,
-      alignSelf: 'center',*/
+    map:{
+
       paddingLeft:450,
       paddingTop:80,
       height:400,
