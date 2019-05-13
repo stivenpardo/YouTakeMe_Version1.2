@@ -11,7 +11,6 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
-import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 
@@ -22,8 +21,8 @@ import RegisterPath from './RegisterPath';
 import SelectPath from './SelectPaths/SelectPaths'
 import Singin from './Singin';
 import firebase from "firebase";
-//import IconFacebook from '../Images/IconFacebook.png'
-//import IconGoogle from '../Images/IconGoogle.png'
+import IconFacebook from '../Images/IconFacebook.png'
+import IconGoogle from '../Images/IconGoogle.png'
 
 //import Book from '../data/stories.json';
 
@@ -71,14 +70,20 @@ class MainConcent extends React.Component {
             case 'Singin':
                 return (<Singin/>)            
             default:
-                return (<div style={}><Paper> 
-                    <Typography> Iniciar Sesicion Con  </Typography>
-                    <Fab variant="extended" aria-label="Delete" >
-                        <NavigationIcon  />
-                            Inicia Sesion con Facebook
-                    </Fab>           
+                return (<div style={theme.styles.defaultLogin}> 
+                    <Typography> Iniciar Sesión Con  </Typography>
+                    <br/>
+                    <Button variant="outlined" aria-label="Delete" style={theme.styles.ButtonDefaultLogin} >
+                       <img src={IconFacebook}/>
+                           acebook
+                    </Button>  
+                    <br/>
+                    <Button variant="outlined" aria-label="Delete" style={theme.styles.ButtonDefaultLogin} >
+                    <img src={IconGoogle}/>
+                           oogle  
+                    </Button>           
                     
-            </Paper> </div>)
+            </div>)
 
         }
 

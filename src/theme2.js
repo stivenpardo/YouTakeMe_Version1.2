@@ -110,8 +110,20 @@ const theme = createMuiTheme({
       width:600,
     },
     defaultLogin:{
-      width:'45%',
-      height:'50%'
+      width: 300,
+      height: 150,
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: '-75px',
+      marginLeft: '-75px',
+      textAlign:'center'
+    },
+    ButtonDefaultLogin:{
+      width: 150,
+      height: 50,
+      borderBottom:20,
+      borderTop:20
     }
   }
 });
