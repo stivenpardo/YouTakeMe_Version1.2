@@ -73,7 +73,7 @@ class RegisterPath extends React.Component {
                 <Typography>registro destino</Typography>
                 <Grid container item xs={12}>
                     <Grid item xs={5}>
-                        of 5
+                        {/*of 2 */} 
                 </Grid>
                     <Grid item xs={3}>
                         <Paper>
@@ -140,7 +140,7 @@ class RegisterPath extends React.Component {
                         </Paper>
                     </Grid>
                     <Grid item xs={4}>
-                        of 2
+                        {/*of 2 */} 
                 </Grid>
 
                 </Grid>
@@ -158,7 +158,7 @@ class RegisterPath extends React.Component {
                     </IconButton>
                 </Paper>
 
-                <Map google={this.props.google} zoom={14}>
+                <Map style={styles.map} google={this.props.google} zoom={14}>
 
                     <Marker onClick={this.onMarkerClick}
                         name={'Current location'} />

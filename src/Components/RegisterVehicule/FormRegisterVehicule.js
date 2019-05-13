@@ -11,6 +11,9 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { Divider } from '@material-ui/core';
+//my components
+import firebase from "firebase";
+
 
 class FormRegisterVehicule extends React.Component {
     constructor(props) {
@@ -31,6 +34,32 @@ class FormRegisterVehicule extends React.Component {
       handleOpen() {
         this.setState({ open: true })
       }
+      initFirebase() {
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDiQZvc_MU0wDrurZPAU2wjyLMlaQ5c_n0",
+            authDomain: "youtakeme.firebaseapp.com",
+            databaseURL: "https://youtakeme.firebaseio.com",
+            projectId: "youtakeme",
+            storageBucket: "youtakeme.appspot.com",
+            messagingSenderId: "669599509097"
+        };
+        firebase.initializeApp(config);
+    }
+    loadProduct(){
+      // Get a reference to the database service
+      var database = firebase.database();
+    return firebase.database().ref('/productos/').once('value').then((snapshot)=> {
+      var productos = snapshot.val();
+      this.setState({
+        productos
+      })
+      // ...
+    });
+    }
+    componentDidMount() {
+      
+  }
 
     render() {
         return (
