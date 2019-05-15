@@ -18,11 +18,11 @@ class FormRegisterVehicule extends React.Component {
         this.state = {
             age: '',
             open: false,
-            idVehiculo: '',
             tipoVehiculo:"",
             placa: "",
             modelo:"",
             fotoCarro:"",
+            fotoConductor:"",
             
         }
     }
@@ -40,11 +40,15 @@ class FormRegisterVehicule extends React.Component {
   }
     handleTextFiledChange= prop => event => {
       this.setState({[prop]:event.target.value });
+      
     }
     
     setVehiculo=()=>{
-      console.log(this.state.tipoVehiculo,this.state.placa,this.state.placa)
-
+      console.log(this.state.tipoVehiculo,this.state.placa,this.state.modelo)
+      firebase.database().ref('vehiculos/' + this.state.placa).set({
+        tipoVehiculo: this.state.tipoVehiculo,
+        modelo: this.state.modelo,
+      });
     }
 
     render() {
@@ -52,18 +56,8 @@ class FormRegisterVehicule extends React.Component {
 
         return (
             <div>
-                <Grid container item xs="12" container  direction="row" justify="flex-start" alignItems="flex-start" style={styles.TextFileVehicule}>
-                <Grid item xs="12"> 
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="idVehiculo"
-                      value={this.state.idVehiculo}
-                      label="idVehiculo"
-                      type="text" 
-                      onChange={this.handleTextFiledChange("idVehiculo")}
-                    />
-                  </Grid>
+                <Grid container item xs="12"  direction="row" justify="flex-start" alignItems="flex-start" style={styles.TextFileVehicule}>
+
                   <Grid  item xs="12"  >                   
                     <FormControl>
                       <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
