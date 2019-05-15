@@ -92,7 +92,7 @@ class RegisterVehicule extends React.Component {
           {this.state.activeStep === steps.length ? (
             <div>
               <Typography >All steps completed</Typography>
-              <Button onClick={this.handleReset}>Reset</Button>
+              <Button onClick={this.handleReset}>Editar</Button>
             </div>
           ) : (
             <div>

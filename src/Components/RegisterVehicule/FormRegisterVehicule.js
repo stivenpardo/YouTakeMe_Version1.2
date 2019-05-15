@@ -8,11 +8,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import { Divider } from '@material-ui/core';
+import theme from '../../theme2';
 //my components
-import firebase from "firebase";
 
 
 class FormRegisterVehicule extends React.Component {
@@ -21,12 +18,15 @@ class FormRegisterVehicule extends React.Component {
         this.state = {
             age: '',
             open: false,
+            idVehiculo: '',
+            tipoVehiculo:"",
+            placa: "",
+            modelo:"",
+            fotoCarro:"",
+            
         }
     }
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
-      }
-    
+
       handleClose() {
         this.setState({ open: false })
       }
@@ -34,49 +34,48 @@ class FormRegisterVehicule extends React.Component {
       handleOpen() {
         this.setState({ open: true })
       }
-      initFirebase() {
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDiQZvc_MU0wDrurZPAU2wjyLMlaQ5c_n0",
-            authDomain: "youtakeme.firebaseapp.com",
-            databaseURL: "https://youtakeme.firebaseio.com",
-            projectId: "youtakeme",
-            storageBucket: "youtakeme.appspot.com",
-            messagingSenderId: "669599509097"
-        };
-        firebase.initializeApp(config);
-    }
-    loadProduct(){
-      // Get a reference to the database service
-      var database = firebase.database();
-    return firebase.database().ref('/productos/').once('value').then((snapshot)=> {
-      var productos = snapshot.val();
-      this.setState({
-        productos
-      })
-      // ...
-    });
-    }
+
     componentDidMount() {
-      
+      this.initFirebase
   }
+    handleTextFiledChange= prop => event => {
+      this.setState({[prop]:event.target.value });
+    }
+    
+    setVehiculo=()=>{
+      console.log(this.state.tipoVehiculo,this.state.placa,this.state.placa)
+
+    }
 
     render() {
+      const {styles}=theme;
+
         return (
             <div>
-                <Grid container item xs="12">
-                  <Grid item xs="12" container  direction="row" justify="flex-start" alignItems="flex-start"  style={styles.ContentMain}>                   
+                <Grid container item xs="12" container  direction="row" justify="flex-start" alignItems="flex-start" style={styles.TextFileVehicule}>
+                <Grid item xs="12"> 
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="idVehiculo"
+                      value={this.state.idVehiculo}
+                      label="idVehiculo"
+                      type="text" 
+                      onChange={this.handleTextFiledChange("idVehiculo")}
+                    />
+                  </Grid>
+                  <Grid  item xs="12"  >                   
                     <FormControl>
                       <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
                       <Select
                         open={this.state.open}
                         onClose={this.handleClose.bind(this)}
                         onOpen={this.handleOpen.bind(this)}
-                        value={this.state.age}
-                        onChange={this.handleChange.bind(this)}
+                        onChange={this.handleTextFiledChange("tipoVehiculo")}
+                        value={this.state.tipoVehiculo}
                         inputProps={{
-                          name: 'age',
-                          id: 'demo-controlled-open-select',
+                          name: 'tipoVehiculo',
+                          id: 'tipoVehiculo',
                         }}
                       >
                         <MenuItem value={10}>Carro</MenuItem>
@@ -89,18 +88,22 @@ class FormRegisterVehicule extends React.Component {
                     <TextField
                       autoFocus
                       margin="dense"
-                      id="id"
+                      id="placa"
+                      value={this.state.placa}
                       label="Placa"
-                      type="text"
+                      type="text" 
+                      onChange={this.handleTextFiledChange("placa")}
                     />
                   </Grid>
-                  <Grid item xs="12"> 
+                  <Grid item xs="12" > 
                     <TextField
                       autoFocus
                       margin="dense"
-                      id="id"
+                      id="modelo"
+                      value={this.state.modelo}
                       label="Modelo"
                       type="text"
+                      onChange={this.handleTextFiledChange("modelo")}
                     />
                   </Grid>
                 </Grid>

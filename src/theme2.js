@@ -124,7 +124,17 @@ const theme = createMuiTheme({
       height: 50,
       borderBottom:20,
       borderTop:20
-    }
+    },
+    TextFileVehicule:{
+      width: 300,
+      height: 150,
+      position: 'absolute',
+      top: '80%',
+      left: '50%',
+      marginTop: '-75px',
+      marginLeft: '-75px',
+      textAlign:'center'
+    },
   }
 });
 

@@ -1,7 +1,7 @@
 {
     "vehiculos":[
         {
-            "tipoVehiculo": "moto, carro, taxi",
+            "tipoVehiculo": "taxi",
             "placa":"ABCD123",
             "modelo":"2019",
             "fotoCarro":"https://i.ytimg.com/vi/YizPeVoFDCs/hqdefault.jpg"
