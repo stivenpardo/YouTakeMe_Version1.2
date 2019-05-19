@@ -38,6 +38,8 @@ function getStepContent(stepIndex) {
 }
 
 
+
+
 class RegisterVehicule extends React.Component {
   constructor(props) {
     super(props);
@@ -73,12 +75,18 @@ class RegisterVehicule extends React.Component {
     // ...
   });
   }
+  dataVehicule= (setVehicule)=>{
+    return(
+      {setVehicule=<FormRegisterVehicule/>}
+    )
+  }
   
 
   render() {
     const steps = getSteps();
     const { activeStep } = this.state;
     const {styles} = theme; 
+    const { classes } = props;
     return (
       < div style={styles.rootStepper}>
         <Stepper activeStep={activeStep} alternativeLabel>
@@ -91,7 +99,7 @@ class RegisterVehicule extends React.Component {
         <div >
           {this.state.activeStep === steps.length ? (
             <div>
-              <Typography >All steps completed</Typography>
+              <Typography >Todos los pasos han sido completados y guardados</Typography>
               <Button onClick={this.handleReset}>Editar</Button>
             </div>
           ) : (
@@ -103,10 +111,10 @@ class RegisterVehicule extends React.Component {
                   onClick={this.handleBack}
                   
                 >
-                  Back
+                  Atras
                 </Button>
-                <Button variant="contained" color="primary" onClick={this.handleNext}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                <Button variant="contained" color="primary" onClick={this.handleNext} onclick={this.dataVehicule}>
+                  {activeStep === steps.length - 1 ? 'Guardar' : 'Siguiente'}
                 </Button>
               </div>
             </div>
