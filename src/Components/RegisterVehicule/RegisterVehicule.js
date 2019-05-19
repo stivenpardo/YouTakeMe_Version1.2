@@ -24,7 +24,7 @@ function getSteps() {
 function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
-      return  <div style={styles.containterList} > <FormRegisterVehicule/> </div>;
+      return  <div > <FormRegisterVehicule style={theme.styles.containterList}/> </div>;
 
     case 1:
       return 'An ad group contains one or more ads which target a shared set of keywords.';
@@ -37,9 +37,6 @@ function getStepContent(stepIndex) {
       return 'Unknown stepIndex';
   }
 }
-
-
-
 
 class RegisterVehicule extends React.Component {
   constructor(props) {
@@ -65,24 +62,13 @@ class RegisterVehicule extends React.Component {
       activeStep: 0,
     });
   }
-  loadProduct(){
-    // Get a reference to the database service
-    var database = firebase.database();
-  return firebase.database().ref('/productos/').once('value').then((snapshot)=> {
-    var productos = snapshot.val();
-    this.setState({
-      productos
-    })
-    // ...
-  });
-  }
+
   dataVehicule= (setVehicule)=>{
     return(
       <FormRegisterVehicule setVehiculo={this.setVehicule} />
     )
   }
   
-
   render() {
     const steps = getSteps();
     const { activeStep } = this.state;
@@ -115,7 +101,7 @@ class RegisterVehicule extends React.Component {
                 >
                   Atras
                 </Button>
-                <Button variant="contained" color="primary"  onClick={this.dataVehicule}>
+                <Button variant="contained" color="primary"  onClick={this.handleNext}>
                   {activeStep === steps.length - 1 ? 'Guardar' : 'Siguiente'}
                 </Button>
               </div>

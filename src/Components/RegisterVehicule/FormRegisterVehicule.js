@@ -28,14 +28,6 @@ class FormRegisterVehicule extends React.Component {
         
     }
 
-    setVehiculo=()=>{
-      console.log(this.state.tipoVehiculo,this.state.placa,this.state.modelo)
-      firebase.database().ref('vehiculos/' + this.state.placa).set({
-        tipoVehiculo: this.state.tipoVehiculo,
-        modelo: this.state.modelo,
-      });
-    }
-
       handleClose() {
         this.setState({ open: false })
       }
@@ -44,16 +36,21 @@ class FormRegisterVehicule extends React.Component {
         this.setState({ open: true })
       }
 
+    handleTextFiledChange= prop => event => {
+      this.setState({[prop]:event.target.value });     
+    }
+    setVehiculo=()=>{
+      console.log(this.state.tipoVehiculo,this.state.placa,this.state.modelo)
+      firebase.database().ref('vehiculos/' + this.state.placa).set({
+        tipoVehiculo: this.state.tipoVehiculo,
+        modelo: this.state.modelo,
+      });
+    }
+
     componentDidMount() {
       this.initFirebase
   }
-    handleTextFiledChange= prop => event => {
-      this.setState({[prop]:event.target.value });
-      
-    }
     
-     
-
     render() {
       const {styles}=theme;
 

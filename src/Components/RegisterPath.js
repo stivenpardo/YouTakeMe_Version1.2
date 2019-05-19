@@ -3,6 +3,10 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+//import DateFnsUtils from '@date-io/date-fns';
+//import { MuiPickersUtilsProvider, TimePicker } from 'material-ui-pickers';
 //components of botton navigation
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -10,7 +14,6 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 //import textfiels
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
@@ -31,13 +34,28 @@ class RegisterPath extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open: false,
             value: 0,
-            view: 0
+            view: 0,
+            tipoVehiculo:"",
         }
     }
+    handleClose() {
+        this.setState({ open: false })
+      }
+    
+      handleOpen() {
+        this.setState({ open: true })
+      }
+
+    handleTextFiledChange= prop => event => {
+      this.setState({[prop]:event.target.value });     
+    }
+
     handleChange(event, value) {
         this.setState({ value });
     }
+
     changeview(view) {
         console.log(view);
         this.setState(
@@ -46,6 +64,7 @@ class RegisterPath extends React.Component {
             }
         )
     }
+
     renderComponnents() {
         const op = this.state.view;
         switch (op) {
@@ -64,79 +83,116 @@ class RegisterPath extends React.Component {
 
     render() {
         const { value } = this.state;
-        const {styles}=theme;
+        const { styles } = theme;
         return (
-            <div>
-                <Grid container item xs={12}>
-                    <Grid item xs={5}>
-                        {/*of 2 */} 
-                </Grid>
-                    <Grid item xs={3}>
-                        <Paper>
-                            <Grid container xs={12}>
-                                {/* <Grid item xs={3}>
-                                moto
-                            </Grid>
-                            <Grid item xs={3}>
-                                carro
-                            </Grid>
-                            <Grid item xs={3}>
-                                taxi
-                            </Grid>
-                            <Grid item xs={2}>
-                                
-                            </Grid> */}
-                                <Grid item xs={12}>
-                                    <BottomNavigation
-                                        value={value}
-                                        onChange={this.handleChange.bind(this)}
-                                        showLabels
-                                    /* className={classes.root} */
-                                    >
-                                        <BottomNavigationAction label="Rutas" icon={<RestoreIcon />} />
-                                        <BottomNavigationAction label="Agregadas" icon={<FavoriteIcon />} />
-                                        <BottomNavigationAction label="Ubicacion" icon={<LocationOnIcon />} />
-                                    </BottomNavigation>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <FormControl >
-                                        <InputLabel htmlFor="input-with-icon-adornment">Partida</InputLabel>
-                                        <Input
-                                            id="input-with-icon-adornment"
-                                            startAdornment={
-                                                <InputAdornment position="start">
-                                                    <AccountCircle />
-                                                </InputAdornment>
-                                            }
-                                        />
-                                    </FormControl>
-                                    <TextField
+            <div >
+                <Grid container item xs={12}  >
 
-                                        id="input-with-icon-textfield"
-                                        label="Destino"
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <AccountCircle />
-                                                </InputAdornment>
-                                            ),
-                                        }}
-                                    />
-                                </Grid>
-                                
+                    <Grid item xs={12}>
+                        <Grid container xs={12}>
+                            <Grid item xs={12}>
+                                <BottomNavigation
+                                    value={value}
+                                    onChange={this.handleChange.bind(this)}
+                                    showLabels
+                                //style={styles.rootStepper}
+                                >
+                                    <BottomNavigationAction label="Rutas" icon={<RestoreIcon />} />
+                                    <BottomNavigationAction label="Agregadas" icon={<FavoriteIcon />} />
+                                    <BottomNavigationAction label="Ubicacion" icon={<LocationOnIcon />} />
+                                </BottomNavigation>
+                                <br />
                             </Grid>
-                        </Paper>
+
+                            <TextField
+
+                                id="input-with-icon-textfield"
+                                label="Origen"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <AccountCircle />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                            <TextField
+
+                                id="input-with-icon-textfield"
+                                label="Destino"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <AccountCircle />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                            <TextField
+                                id="time"
+                                label="Hora de salida"
+                                type="time"
+                                defaultValue="07:30"
+                                //className={classes.textField}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                inputProps={{
+                                step: 300, // 5 min
+                                }}
+                            />
+                            <TextField
+                                id="input-with-icon-textfield"
+                                label="Punto de encuentro"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <AccountCircle />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                />
+
+                            <FormControl>
+                                <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
+                                <Select
+                                    open={this.state.open}
+                                    onClose={this.handleClose.bind(this)}
+                                    onOpen={this.handleOpen.bind(this)}
+                                    onChange={this.handleTextFiledChange("tipoVehiculo")}
+                                    value={this.state.tipoVehiculo}
+                                    inputProps={{
+                                        name: 'tipoVehiculo',
+                                        id: 'tipoVehiculo',
+                                    }}
+                                >
+                                    <MenuItem value={10}>Que amuestre los vehiculos registrados</MenuItem>
+                                    <MenuItem value={20}>Moto</MenuItem>
+                                    <MenuItem value={30}>Taxi</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <TextField
+
+                                id="idCommet"
+                                label="Comentario"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <AccountCircle />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Grid>
+
                     </Grid>
-                    <Grid item xs={4}>
-                        {/*of 2 */} 
-                </Grid>
 
                 </Grid>
-                <Paper style={styles.rootPaperMap}  elevation={1}>
-                    <IconButton  style={styles.iconButtonMap} aria-label="Menu">
+                <Paper style={styles.rootPaperMap} elevation={1}>
+                    <IconButton style={styles.iconButtonMap} aria-label="Menu">
                         <MenuIcon />
                     </IconButton>
-                    <InputBase  style={styles.inputMap} placeholder="Buscar rutas" />
+                    <InputBase style={styles.inputMap} placeholder="Buscar rutas" />
                     <IconButton style={styles.iconButtonMap} aria-label="Search">
                         <SearchIcon />
                     </IconButton>
@@ -163,6 +219,6 @@ class RegisterPath extends React.Component {
 
 }
 
-export default  GoogleApiWrapper({
+export default GoogleApiWrapper({
     apiKey: ("AIzaSyCZchfympGfxtY00VH0p-upBWOB6oHYoRA")
-}) (RegisterPath)
+})(RegisterPath)

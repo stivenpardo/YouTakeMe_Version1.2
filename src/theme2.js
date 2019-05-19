@@ -95,13 +95,6 @@ const theme = createMuiTheme({
       gridTemplateColumns: '42% 10% 42% 6%',
       gridTemplateRows: 'auto'
     },
-    /*  backButtonStepper: {
-       marginRight: theme.spacing.unit,
-     },
-     instructionsStepper: {
-       marginTop: theme.spacing.unit,
-       marginBottom: theme.spacing.unit,
-     },  */
     map:{
 
       paddingLeft:450,
@@ -134,6 +127,9 @@ const theme = createMuiTheme({
       marginTop: '-75px',
       marginLeft: '-75px',
       textAlign:'center'
+    },
+    rootStepperdd: {
+      width: 500,
     },
   }
 });
