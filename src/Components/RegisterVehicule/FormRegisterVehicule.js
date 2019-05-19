@@ -25,6 +25,15 @@ class FormRegisterVehicule extends React.Component {
             fotoConductor:"",
             
         }
+        
+    }
+
+    setVehiculo=()=>{
+      console.log(this.state.tipoVehiculo,this.state.placa,this.state.modelo)
+      firebase.database().ref('vehiculos/' + this.state.placa).set({
+        tipoVehiculo: this.state.tipoVehiculo,
+        modelo: this.state.modelo,
+      });
     }
 
       handleClose() {
@@ -43,13 +52,7 @@ class FormRegisterVehicule extends React.Component {
       
     }
     
-    setVehiculo=()=>{
-      console.log(this.state.tipoVehiculo,this.state.placa,this.state.modelo)
-      firebase.database().ref('vehiculos/' + this.state.placa).set({
-        tipoVehiculo: this.state.tipoVehiculo,
-        modelo: this.state.modelo,
-      });
-    }
+     
 
     render() {
       const {styles}=theme;

@@ -19,7 +19,6 @@ import theme from '../theme2';
 import RegisterVehicule from './RegisterVehicule/RegisterVehicule';
 import RegisterPath from './RegisterPath';
 import SelectPath from './SelectPaths/SelectPaths'
-import Singin from './Singin';
 import firebase from "firebase";
 import IconFacebook from '../Images/IconFacebook.png'
 import IconGoogle from '../Images/IconGoogle.png'
@@ -68,7 +67,7 @@ class MainConcent extends React.Component {
             case 'selectPath':
                 return (<SelectPath/>)
             case 'Singin':
-                return (<Singin/>)            
+                break;           
             default:
                 return (<div style={theme.styles.defaultLogin}> 
                     <Typography> Iniciar Sesión Con  </Typography>
@@ -161,10 +160,13 @@ class MainConcent extends React.Component {
             // ...
           });
     }
+    logOut(){
+        this.setState({ anchorEl: null,userAccount:null });
+      }
     componentDidMount() {
-        this.initFirebase
+        this.initFirebase()
         //this.loginFacebook;
-        this.loginGoogle;
+        this.loginGoogle();
     }
      render(){
         const {styles}=theme;
@@ -216,8 +218,8 @@ class MainConcent extends React.Component {
                                     open={open}
                                     onClose={this.handleClose.bind(this)}
                                     >
-                                    <MenuItem onClick={()=>this.changeView("Singin")}> Iniciar sesión</MenuItem>
-                                    <MenuItem onClick={this.handleClose.bind(this)}>Salir</MenuItem>
+                                    <MenuItem onClick={()=>this.loginGoogle()}> Iniciar sesión</MenuItem>
+                                    <MenuItem onClick={this.logOut.bind(this)}>Salir</MenuItem>
                                     </Menu>
                                 </div>
                                 )}

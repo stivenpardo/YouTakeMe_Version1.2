@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import FormRegisterVehicule from './FormRegisterVehicule'
 //my components
 import theme from '../../theme2';
+import { FormControl } from '@material-ui/core';
 
 const {styles} = theme; 
 
@@ -77,7 +78,7 @@ class RegisterVehicule extends React.Component {
   }
   dataVehicule= (setVehicule)=>{
     return(
-      {setVehicule=<FormRegisterVehicule/>}
+      <FormRegisterVehicule setVehiculo={this.setVehicule} />
     )
   }
   
@@ -86,7 +87,7 @@ class RegisterVehicule extends React.Component {
     const steps = getSteps();
     const { activeStep } = this.state;
     const {styles} = theme; 
-    const { classes } = props;
+
     return (
       < div style={styles.rootStepper}>
         <Stepper activeStep={activeStep} alternativeLabel>
@@ -101,6 +102,7 @@ class RegisterVehicule extends React.Component {
             <div>
               <Typography >Todos los pasos han sido completados y guardados</Typography>
               <Button onClick={this.handleReset}>Editar</Button>
+              <Button onClick={this.handleReset}>Registrar otro vehiculo</Button>
             </div>
           ) : (
             <div>
@@ -113,7 +115,7 @@ class RegisterVehicule extends React.Component {
                 >
                   Atras
                 </Button>
-                <Button variant="contained" color="primary" onClick={this.handleNext} onclick={this.dataVehicule}>
+                <Button variant="contained" color="primary"  onClick={this.dataVehicule}>
                   {activeStep === steps.length - 1 ? 'Guardar' : 'Siguiente'}
                 </Button>
               </div>
