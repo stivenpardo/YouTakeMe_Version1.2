@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 //..components materials
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
@@ -69,8 +67,6 @@ class RegisterPath extends React.Component {
         const {styles}=theme;
         return (
             <div>
-
-                <Typography>registro destino</Typography>
                 <Grid container item xs={12}>
                     <Grid item xs={5}>
                         {/*of 2 */} 
@@ -126,16 +122,8 @@ class RegisterPath extends React.Component {
                                             ),
                                         }}
                                     />
-                                    {/* <div >
-                                <Grid container spacing={8} alignItems="flex-end">
-                                    <Grid item>
-                                        <AccountCircle />
-                                    </Grid>
-                                 </Grid>   
-                             </div>    */}
                                 </Grid>
-
-
+                                
                             </Grid>
                         </Paper>
                     </Grid>
