@@ -66,6 +66,7 @@ class RegisterVehicule extends React.Component {
   dataVehicule= (setVehicule)=>{
     return(
       <FormRegisterVehicule setVehiculo={this.setVehicule} />
+      //esto es 
     )
   }
   
