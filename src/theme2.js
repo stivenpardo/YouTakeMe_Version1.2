@@ -100,9 +100,9 @@ const theme = createMuiTheme({
       width: 600,
       height: 350,
       position: 'absolute',
-      paddingTop:80,
-      marginTop: '-75px',
-      marginLeft: '-75px',
+      //paddingTop:100,
+      marginTop: '75px',
+      marginLeft: '90px',
       textAlign:'center'
       /*paddingLeft:450,
       paddingTop:80,
