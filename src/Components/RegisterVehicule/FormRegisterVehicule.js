@@ -37,15 +37,10 @@ class FormRegisterVehicule extends React.Component {
       }
 
     handleTextFiledChange= prop => event => {
-      this.setState({[prop]:event.target.value });     
+      this.setState({[prop]:event.target.value }); 
+      this.props.updateDataform({[prop]:event.target.value })    
     }
-    setVehiculo=()=>{
-      console.log(this.state.tipoVehiculo,this.state.placa,this.state.modelo)
-      firebase.database().ref('vehiculos/' + this.state.placa).set({
-        tipoVehiculo: this.state.tipoVehiculo,
-        modelo: this.state.modelo,
-      });
-    }
+
 
     componentDidMount() {
       this.initFirebase

@@ -2,6 +2,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
+import green from '@material-ui/core/colors/green';
 import Logo from './Images/Logo2.png'
 const theme = createMuiTheme({
   typography: { useNextVariants: true },
@@ -96,11 +97,17 @@ const theme = createMuiTheme({
       gridTemplateRows: 'auto'
     },
     map:{
-
-      paddingLeft:450,
+      width: 600,
+      height: 350,
+      position: 'absolute',
+      paddingTop:80,
+      marginTop: '-75px',
+      marginLeft: '-75px',
+      textAlign:'center'
+      /*paddingLeft:450,
       paddingTop:80,
       height:400,
-      width:600,
+      width:600,*/
     },
     defaultLogin:{
       width: 300,
@@ -131,6 +138,20 @@ const theme = createMuiTheme({
     rootStepperdd: {
       width: 500,
     },
+    buttonSuccess: {
+      backgroundColor: green[500],
+      '&:hover': {
+        backgroundColor: green[700],
+      },
+    },
+    fabProgress: {
+      color: green[500],
+      position: 'absolute',
+      top: -6,
+      left: -6,
+      zIndex: 1,
+    },
+
   }
 });
 

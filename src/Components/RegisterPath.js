@@ -5,6 +5,12 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import CheckIcon from '@material-ui/icons/Check';
+import SaveIcon from '@material-ui/icons/Save';
+
 //import DateFnsUtils from '@date-io/date-fns';
 //import { MuiPickersUtilsProvider, TimePicker } from 'material-ui-pickers';
 //components of botton navigation
@@ -37,7 +43,10 @@ class RegisterPath extends React.Component {
             open: false,
             value: 0,
             view: 0,
+            loading: false,
+            success: false,
             tipoVehiculo:"",
+            numberPassenger:"",
         }
     }
     handleClose() {
@@ -80,10 +89,32 @@ class RegisterPath extends React.Component {
         )
 
     }
+    handleButtonClick = () => {
+        if (!this.state.loading) {
+          this.setState(
+            {
+              success: false,
+              loading: true,
+            },
+            () => {
+              this.timer = setTimeout(() => {
+                this.setState({
+                  loading: false,
+                  success: true,
+                });
+              }, 2000);
+            },
+          );
+        }
+      };
 
+    componentWillUnmount() {
+        clearTimeout(this.timer);
+      }
     render() {
         const { value } = this.state;
         const { styles } = theme;
+        const { loading, success } = this.state;
         return (
             <div >
                 <Grid container item xs={12}  >
@@ -141,18 +172,6 @@ class RegisterPath extends React.Component {
                                 step: 300, // 5 min
                                 }}
                             />
-                            <TextField
-                                id="input-with-icon-textfield"
-                                label="Punto de encuentro"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <AccountCircle />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                />
-
                             <FormControl>
                                 <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
                                 <Select
@@ -171,6 +190,38 @@ class RegisterPath extends React.Component {
                                     <MenuItem value={30}>Taxi</MenuItem>
                                 </Select>
                             </FormControl>
+                            <FormControl>
+                                <InputLabel htmlFor="demo-controlled-open-select"> Numero de pasajeros</InputLabel>
+                                <Select
+                                    open={this.state.open}
+                                    onClose={this.handleClose.bind(this)}
+                                    onOpen={this.handleOpen.bind(this)}
+                                    onChange={this.handleTextFiledChange("numberPassenger")}
+                                    value={this.state.numberPassenger}
+                                    inputProps={{
+                                        name: 'numberPassenger',
+                                        id: 'numberPassenger',
+                                    }}
+                                >
+                                    <MenuItem value={10}>1</MenuItem>
+                                    <MenuItem value={20}>2</MenuItem>
+                                    <MenuItem value={30}>3</MenuItem>
+                                    <MenuItem value={40}>4</MenuItem>
+
+                                </Select>
+                            </FormControl>
+                            <TextField
+                                id="input-with-icon-textfield"
+                                label="Punto de encuentro"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <AccountCircle />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                />                         
+                            
                             <TextField
 
                                 id="idCommet"
@@ -183,25 +234,19 @@ class RegisterPath extends React.Component {
                                     ),
                                 }}
                             />
+                             <Fab color="primary" style={styles.buttonSuccess} onClick={this.handleButtonClick}>
+                                {success ? <CheckIcon /> : <SaveIcon />}
+                            </Fab>
+                            {loading && <CircularProgress size={68} style={styles.fabProgress} />}   
+
+
                         </Grid>
 
                     </Grid>
 
                 </Grid>
-                <Paper style={styles.rootPaperMap} elevation={1}>
-                    <IconButton style={styles.iconButtonMap} aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <InputBase style={styles.inputMap} placeholder="Buscar rutas" />
-                    <IconButton style={styles.iconButtonMap} aria-label="Search">
-                        <SearchIcon />
-                    </IconButton>
-                    <Divider style={styles.dividerMap} />
-                    <IconButton color="primary" style={styles.iconButtonMap} aria-label="Directions">
-                        <DirectionsIcon />
-                    </IconButton>
-                </Paper>
-
+                <br/>
+                <br/>
                 <Map style={styles.map} google={this.props.google} zoom={14}>
 
                     <Marker onClick={this.onMarkerClick}

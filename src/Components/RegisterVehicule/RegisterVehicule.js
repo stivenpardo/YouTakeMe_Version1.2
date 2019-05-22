@@ -14,41 +14,56 @@ import FormRegisterVehicule from './FormRegisterVehicule'
 //my components
 import theme from '../../theme2';
 import { FormControl } from '@material-ui/core';
-
+import firebase from 'firebase';
 const {styles} = theme; 
 
 function getSteps() {
   return ['Datos del vehiculo', 'Foto del carro ', 'Foto del conductor'];
 }
 
-function getStepContent(stepIndex) {
-  switch (stepIndex) {
-    case 0:
-      return  <div > <FormRegisterVehicule style={theme.styles.containterList}/> </div>;
 
-    case 1:
-      return 'An ad group contains one or more ads which target a shared set of keywords.';
-    case 2:
-      return `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`;
-    default:
-      return 'Unknown stepIndex';
-  }
-}
 
 class RegisterVehicule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {  
       activeStep: 0,
+      tipoVehiculo:"",
+      placa: "",
+      modelo:"",
     }
   }
+
+  updateDataform(formValue){
+    this.setState(formValue);
+  }
+   getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return  <div > <FormRegisterVehicule updateDataform={this.updateDataform.bind(this)} style={theme.styles.containterList}/> </div>;
+  
+      case 1:
+        return 'An ad group contains one or more ads which target a shared set of keywords.';
+      case 2:
+        return `Try out different ad text to see what brings in the most customers,
+                  and learn how to enhance your ads using features like ad extensions.
+                  If you run into any problems with your ads, find out how to tell if
+                  they're running and how to resolve approval issues.`;
+      default:
+        return 'Unknown stepIndex';
+    }
+  }
+
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
     }));
+    const steps = getSteps();
+    const { activeStep } = this.state;
+    if(activeStep === steps.length - 1){
+      //guardar
+      this.setVehiculo();
+    }
   }
  
   handleBack = () => {
@@ -63,6 +78,12 @@ class RegisterVehicule extends React.Component {
     });
   }
 
+  setVehiculo(){
+    firebase.database().ref('vehiculos/' + this.state.placa).set({
+      tipoVehiculo: this.state.tipoVehiculo,
+      modelo: this.state.modelo,
+    });
+  }
   dataVehicule= (setVehicule)=>{
     return(
       <FormRegisterVehicule setVehiculo={this.setVehicule} />
@@ -93,7 +114,7 @@ class RegisterVehicule extends React.Component {
             </div>
           ) : (
             <div>
-              <Typography >{getStepContent(activeStep)}</Typography>
+              <Typography >{this.getStepContent(activeStep)}</Typography>
               <div>
                 <Button
                   disabled={activeStep === 0}
