@@ -22,6 +22,9 @@ const theme = createMuiTheme({
       color: 'blue',
       paddingBottom: 50
     },
+    select:{
+      width:'40%',
+    },
     MainButton: {
       color: 'black'
     },

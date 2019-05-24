@@ -1,12 +1,9 @@
 import React from 'react';
 //..components materials
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
@@ -34,13 +31,15 @@ import InputBase from '@material-ui/core/InputBase';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 //my Components
 import theme from '../theme2';
+import firebase from "firebase";
 
 
 class RegisterPath extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            openVehicule: false,
+            //openPassenger: false,
             value: 0,
             view: 0,
             loading: false,
@@ -108,6 +107,12 @@ class RegisterPath extends React.Component {
         }
       };
 
+      getVehicule(){
+        var userId = firebase.auth().currentUser.uid;
+        return firebase.database().ref('/vehiculos/' + userId).once('value').then(function(snapshot) {
+        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+            });
+      }
     componentWillUnmount() {
         clearTimeout(this.timer);
       }
@@ -172,8 +177,8 @@ class RegisterPath extends React.Component {
                                 step: 300, // 5 min
                                 }}
                             />
-                            <FormControl>
-                                <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
+                            <FormControl style={styles.select}>
+                                <InputLabel  htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
                                 <Select
                                     open={this.state.open}
                                     onClose={this.handleClose.bind(this)}
@@ -183,14 +188,16 @@ class RegisterPath extends React.Component {
                                     inputProps={{
                                         name: 'tipoVehiculo',
                                         id: 'tipoVehiculo',
+                                        
                                     }}
+                                    
                                 >
                                     <MenuItem value={10}>Que amuestre los vehiculos registrados</MenuItem>
                                     <MenuItem value={20}>Moto</MenuItem>
                                     <MenuItem value={30}>Taxi</MenuItem>
                                 </Select>
                             </FormControl>
-                            <FormControl>
+                            <FormControl style={styles.select}>
                                 <InputLabel htmlFor="demo-controlled-open-select"> Numero de pasajeros</InputLabel>
                                 <Select
                                     open={this.state.open}
