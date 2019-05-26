@@ -122,24 +122,20 @@ class RegisterPath extends React.Component {
         const { loading, success } = this.state;
         return (
             <div >
-                <Grid container item xs={12}  >
-
-                    <Grid item xs={12}>
-                        <Grid container xs={12}>
-                            <Grid item xs={12}>
-                                <BottomNavigation
+                               <BottomNavigation
                                     value={value}
                                     onChange={this.handleChange.bind(this)}
                                     showLabels
-                                //style={styles.rootStepper}
                                 >
                                     <BottomNavigationAction label="Rutas" icon={<RestoreIcon />} />
                                     <BottomNavigationAction label="Agregadas" icon={<FavoriteIcon />} />
                                     <BottomNavigationAction label="Ubicacion" icon={<LocationOnIcon />} />
                                 </BottomNavigation>
                                 <br />
-                            </Grid>
-
+                            
+                <Grid container item xs={12}>
+                    <Grid item xs={12}>
+                        <Grid container xs={6}>
                             <TextField
 
                                 id="input-with-icon-textfield"
@@ -227,8 +223,7 @@ class RegisterPath extends React.Component {
                                         </InputAdornment>
                                     ),
                                 }}
-                                />                         
-                            
+                                />                                                                     
                             <TextField
 
                                 id="idCommet"
@@ -241,12 +236,17 @@ class RegisterPath extends React.Component {
                                     ),
                                 }}
                             />
+                            <br/>
                              <Fab color="primary" style={styles.buttonSuccess} onClick={this.handleButtonClick}>
                                 {success ? <CheckIcon /> : <SaveIcon />}
                             </Fab>
-                            {loading && <CircularProgress size={68} style={styles.fabProgress} />}   
+                            {loading && <CircularProgress size={68} style={styles.fabProgress} />}  
 
 
+                        </Grid>
+
+                        <Grid item={6}>
+                             
                         </Grid>
 
                     </Grid>

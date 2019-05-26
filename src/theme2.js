@@ -47,6 +47,11 @@ const theme = createMuiTheme({
       paddingTop: 80,
       height: 800
     },
+    ContentTextPath:{
+      position: 'absolute',
+      left: '5%',
+      textAlign:'left'
+    },
     darkStyleBackgroud: {
       background: 'linear-gradient(45deg, #e8eaf6 30%, #f5f5f5 90%)',
     },
