@@ -1,6 +1,5 @@
 import React from 'react';
 //components materials
-import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField';
 //....Imports Select
 import FormControl from '@material-ui/core/FormControl';
@@ -51,9 +50,9 @@ class FormRegisterVehicule extends React.Component {
 
         return (
             <div>
-                <Grid container item xs="12"  direction="row" justify="flex-start" alignItems="flex-start" style={styles.TextFileVehicule}>
+                <Grid container item xs="12"  direction="row" justify="flex-start" alignItems="flex-start" >
 
-                  <Grid  item xs="12"  >                   
+                  <Grid  item xs="12"  container spacing={0} direction="column" alignItems="center" justify="center">                   
                     <FormControl style={styles.select}>
                       <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
                       <Select
@@ -73,7 +72,7 @@ class FormRegisterVehicule extends React.Component {
                       </Select>
                     </FormControl>
                   </Grid>
-                  <Grid item xs="12"> 
+                  <Grid item xs="12" container spacing={0} direction="column" alignItems="center" justify="center"> 
                     <TextField
                       autoFocus
                       margin="dense"
@@ -84,7 +83,7 @@ class FormRegisterVehicule extends React.Component {
                       onChange={this.handleTextFiledChange("placa")}
                     />
                   </Grid>
-                  <Grid item xs="12" > 
+                  <Grid item xs="12" container spacing={0} direction="column" alignItems="center" justify="center"> 
                     <TextField
                       autoFocus
                       margin="dense"

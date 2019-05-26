@@ -6,16 +6,13 @@ import Typography from '@material-ui/core/Typography'
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 //....Forlder RegisterVehicule
 import FormRegisterVehicule from './FormRegisterVehicule'
 //my components
 import theme from '../../theme2';
-import { FormControl } from '@material-ui/core';
 import firebase from 'firebase';
-const {styles} = theme; 
+import { Grid } from '@material-ui/core';
 
 function getSteps() {
   return ['Datos del vehiculo', 'Foto del carro ', 'Foto del conductor'];
@@ -40,15 +37,47 @@ class RegisterVehicule extends React.Component {
    getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return  <div > <FormRegisterVehicule updateDataform={this.updateDataform.bind(this)} style={theme.styles.containterList}/> </div>;
+        return   <FormRegisterVehicule updateDataform={this.updateDataform.bind(this)}  /> ;
   
       case 1:
-        return 'An ad group contains one or more ads which target a shared set of keywords.';
+            return <div>
+              <br/>
+              <br/>
+                <Grid container spacing={0} direction="column" alignItems="center" justify="center"> 
+                  <input 
+                    accept="image/*"
+                    style={theme.styles.input}
+                    id="file-car"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="file-car">
+                    <Button variant="outlined" component="span"  >
+                      Subir
+                    </Button>
+                  </label>
+              </Grid>
+            </div>
+            
       case 2:
-        return `Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.`;
+        return <div>
+              <br/>
+              <br/>
+                <Grid container spacing={0} direction="column" alignItems="center" justify="center"> 
+                  <input 
+                    accept="image/*"
+                    style={theme.styles.input}
+                    id="file-car"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="file-car">
+                    <Button variant="outlined" component="span"  >
+                      Subir
+                    </Button>
+                  </label>
+              </Grid>
+            </div>
       default:
         return 'Unknown stepIndex';
     }
@@ -79,16 +108,10 @@ class RegisterVehicule extends React.Component {
   }
 
   setVehiculo(){
-    firebase.database().ref('vehiculos/' + this.state.placa).set({
+    firebase.database().ref('usuarios/vehiculos/' + this.state.placa).set({
       tipoVehiculo: this.state.tipoVehiculo,
       modelo: this.state.modelo,
     });
-  }
-  dataVehicule= (setVehicule)=>{
-    return(
-      <FormRegisterVehicule setVehiculo={this.setVehicule} />
-      //esto es 
-    )
   }
   
   render() {
@@ -115,7 +138,7 @@ class RegisterVehicule extends React.Component {
           ) : (
             <div>
               <Typography >{this.getStepContent(activeStep)}</Typography>
-              <div>
+              <div style={styles.bottonStepper}>
                 <Button
                   disabled={activeStep === 0}
                   onClick={this.handleBack}

@@ -22,7 +22,7 @@ const theme = createMuiTheme({
       paddingBottom: 50
     },
     select:{
-      width:'40%',
+      width: 185,
     },
     MainButton: {
       color: 'black'
@@ -35,6 +35,12 @@ const theme = createMuiTheme({
       backgroundPosition: 'right center',
       bgproperties: 'fixed'
 
+    },
+    bottonStepper:{
+      position: 'absolute',
+      top: '55%',
+      left: '70%',
+      textAlign:'left'
     },
     ContentMain: {
       paddingLeft: 200,
@@ -69,6 +75,9 @@ const theme = createMuiTheme({
       height: 0,
       paddingTop: '56.25%', // 16:9
     },
+    input: {
+      display: 'none',
+    },
     rootPaperMap: {
       padding: '2px 4px',
       display: 'flex',
@@ -92,11 +101,6 @@ const theme = createMuiTheme({
     },
     ItemsList: {
       alignSelf: 'center'
-    },
-    containterList: {
-      display: 'grid',
-      gridTemplateColumns: '42% 10% 42% 6%',
-      gridTemplateRows: 'auto'
     },
     map:{
       width: 600,
