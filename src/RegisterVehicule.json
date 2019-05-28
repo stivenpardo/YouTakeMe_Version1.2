@@ -1,0 +1,8 @@
+{
+    "usuarios":{
+        "idUsuario":{
+            "vehiculos":[ "placa", "tipoVehiculo", "modelo" ]
+        }
+          
+    }
+}

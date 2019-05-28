@@ -1,4 +1,5 @@
 {
+     
     "vehiculos":[
         {
             "tipoVehiculo": "taxi",
@@ -8,5 +9,15 @@
             
         }
 
-    ]
+    ],
+    "usuarios" : {
+        "vehiculos" : {
+          "5635" : {
+            "modelo" : "6456",
+            "tipoVehiculo" : 20
+          },
+          "modelo" : "",
+          "tipoVehiculo" : ""
+        }
+      }
 }

@@ -44,20 +44,20 @@ class RegisterPath extends React.Component {
             view: 0,
             loading: false,
             success: false,
-            tipoVehiculo:"",
-            numberPassenger:"",
+            tipoVehiculo: "",
+            numberPassenger: "",
         }
     }
     handleClose() {
         this.setState({ open: false })
-      }
-    
-      handleOpen() {
-        this.setState({ open: true })
-      }
+    }
 
-    handleTextFiledChange= prop => event => {
-      this.setState({[prop]:event.target.value });     
+    handleOpen() {
+        this.setState({ open: true })
+    }
+
+    handleTextFiledChange = prop => event => {
+        this.setState({ [prop]: event.target.value });
     }
 
     handleChange(event, value) {
@@ -90,49 +90,49 @@ class RegisterPath extends React.Component {
     }
     handleButtonClick = () => {
         if (!this.state.loading) {
-          this.setState(
-            {
-              success: false,
-              loading: true,
-            },
-            () => {
-              this.timer = setTimeout(() => {
-                this.setState({
-                  loading: false,
-                  success: true,
-                });
-              }, 2000);
-            },
-          );
+            this.setState(
+                {
+                    success: false,
+                    loading: true,
+                },
+                () => {
+                    this.timer = setTimeout(() => {
+                        this.setState({
+                            loading: false,
+                            success: true,
+                        });
+                    }, 2000);
+                },
+            );
         }
-      };
+    };
 
-      getVehicule(){
+    getVehicule() {
         var userId = firebase.auth().currentUser.uid;
-        return firebase.database().ref('/vehiculos/' + userId).once('value').then(function(snapshot) {
-        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-            });
-      }
+        return firebase.database().ref('/usuarios/' + userId).once('value').then(function (snapshot) {
+            var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        });
+    }
     componentWillUnmount() {
         clearTimeout(this.timer);
-      }
+    }
     render() {
         const { value } = this.state;
         const { styles } = theme;
         const { loading, success } = this.state;
         return (
             <div >
-                               <BottomNavigation
-                                    value={value}
-                                    onChange={this.handleChange.bind(this)}
-                                    showLabels
-                                >
-                                    <BottomNavigationAction label="Rutas" icon={<RestoreIcon />} />
-                                    <BottomNavigationAction label="Agregadas" icon={<FavoriteIcon />} />
-                                    <BottomNavigationAction label="Ubicacion" icon={<LocationOnIcon />} />
-                                </BottomNavigation>
-                                <br />
-                            
+                <BottomNavigation
+                    value={value}
+                    onChange={this.handleChange.bind(this)}
+                    showLabels
+                >
+                    <BottomNavigationAction label="Rutas" icon={<RestoreIcon />} />
+                    <BottomNavigationAction label="Agregadas" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction label="Ubicacion" icon={<LocationOnIcon />} />
+                </BottomNavigation>
+                <br />
+
                 <Grid container item xs={12}>
                     <Grid item xs={12}>
                         <Grid container xs={6}>
@@ -167,14 +167,14 @@ class RegisterPath extends React.Component {
                                 defaultValue="07:30"
                                 //className={classes.textField}
                                 InputLabelProps={{
-                                shrink: true,
+                                    shrink: true,
                                 }}
                                 inputProps={{
-                                step: 300, // 5 min
+                                    step: 300, // 5 min
                                 }}
                             />
                             <FormControl style={styles.select}>
-                                <InputLabel  htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
+                                <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
                                 <Select
                                     open={this.state.open}
                                     onClose={this.handleClose.bind(this)}
@@ -184,9 +184,9 @@ class RegisterPath extends React.Component {
                                     inputProps={{
                                         name: 'tipoVehiculo',
                                         id: 'tipoVehiculo',
-                                        
+
                                     }}
-                                    
+
                                 >
                                     <MenuItem value={10}>Que amuestre los vehiculos registrados</MenuItem>
                                     <MenuItem value={20}>Moto</MenuItem>
@@ -223,7 +223,7 @@ class RegisterPath extends React.Component {
                                         </InputAdornment>
                                     ),
                                 }}
-                                />                                                                     
+                            />
                             <TextField
 
                                 id="idCommet"
@@ -236,24 +236,24 @@ class RegisterPath extends React.Component {
                                     ),
                                 }}
                             />
-                            <br/>
-                             <Fab color="primary" style={styles.buttonSuccess} onClick={this.handleButtonClick}>
+                            <br />
+                            <Fab color="primary" style={styles.buttonSuccess} onClick={this.handleButtonClick}>
                                 {success ? <CheckIcon /> : <SaveIcon />}
                             </Fab>
-                            {loading && <CircularProgress size={68} style={styles.fabProgress} />}  
+                            {loading && <CircularProgress size={68} style={styles.fabProgress} />}
 
 
                         </Grid>
 
                         <Grid item={6}>
-                             
+
                         </Grid>
 
                     </Grid>
 
                 </Grid>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <Map style={styles.map} google={this.props.google} zoom={14}>
 
                     <Marker onClick={this.onMarkerClick}

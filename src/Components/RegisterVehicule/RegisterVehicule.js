@@ -108,10 +108,10 @@ class RegisterVehicule extends React.Component {
   }
 
   setVehiculo(){
-    firebase.database().ref('usuarios/vehiculos/' + this.state.placa).set({
+    firebase.database().ref('usuarios3/idUsuaio/vehiculos/' + this.state.placa).set([{
       tipoVehiculo: this.state.tipoVehiculo,
       modelo: this.state.modelo,
-    });
+    }]);
   }
   
   render() {
