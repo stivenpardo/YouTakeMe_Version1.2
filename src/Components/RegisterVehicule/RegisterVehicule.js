@@ -1,6 +1,7 @@
 import React from 'react';
 //components materials
 import Typography from '@material-ui/core/Typography'
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 //import theme from '../../theme2';
 //....Imports Steppers
 import Stepper from '@material-ui/core/Stepper';
@@ -53,6 +54,7 @@ class RegisterVehicule extends React.Component {
                   />
                   <label htmlFor="file-car">
                     <Button variant="outlined" component="span"  >
+                    <CloudUploadIcon style={theme.styles.rightIcon} />
                       Subir
                     </Button>
                   </label>
@@ -73,6 +75,7 @@ class RegisterVehicule extends React.Component {
                   />
                   <label htmlFor="file-car">
                     <Button variant="outlined" component="span"  >
+                    <CloudUploadIcon style={theme.styles.rightIcon} />
                       Subir
                     </Button>
                   </label>

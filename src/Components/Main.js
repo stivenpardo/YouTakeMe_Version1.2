@@ -69,7 +69,8 @@ class MainConcent extends React.Component {
             case 'Singin':
                 break;           
             default:
-                return (<div style={theme.styles.defaultLogin}> 
+                break;
+                /*return (<div style={theme.styles.defaultLogin}> 
                     <Typography> Iniciar Sesión Con  </Typography>
                     <br/>
                     <Button variant="outlined" aria-label="Delete" style={theme.styles.ButtonDefaultLogin} >
@@ -82,7 +83,7 @@ class MainConcent extends React.Component {
                            oogle  
                     </Button>           
                     
-            </div>)
+            </div>)*/
 
         }
 

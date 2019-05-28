@@ -89,6 +89,9 @@ const theme = createMuiTheme({
       alignItems: 'center',
       width: 400,
     },
+    rightIcon:{
+      marginLeft: 'initial'
+    },
     inputMap: {
       marginLeft: 8,
       flex: 1,

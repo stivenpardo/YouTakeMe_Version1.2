@@ -76,11 +76,11 @@ class RegisterPath extends React.Component {
     renderComponnents() {
         const op = this.state.view;
         switch (op) {
-            case 0:
+            case 'rutas':
                 return (<RegisterVehicule />);
-            case 1:
+            case 'agregadas':
                 return (<RegisterPath /* changeview={this.changeview.bind(this)} */ />);
-            case 2:
+            case 'ubicación':
                 return (<SelectPath />);
         }
         return (
@@ -246,7 +246,7 @@ class RegisterPath extends React.Component {
                         </Grid>
 
                         <Grid item={6}>
-
+                                    dsafsadsdafasd
                         </Grid>
 
                     </Grid>
