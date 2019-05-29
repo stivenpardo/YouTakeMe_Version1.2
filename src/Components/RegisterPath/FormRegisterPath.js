@@ -83,6 +83,13 @@ class FormRegisterPath extends React.Component {
             var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
         });
     }
+    clearForm(){
+        let registerPath=['origin','distination','departureTime','typeVehicule','numberPassangers','meeting point', 'commentary']
+        
+        forEach(element => {
+            //recorrer el vector despues llamar este metodo en el setREGISTERPath y colocarlo en lo ultimo por medio de un try catch ...    
+        });
+    }
     componentWillUnmount() {
         clearTimeout(this.timer);
     }
@@ -121,7 +128,7 @@ class FormRegisterPath extends React.Component {
                                 id="time"
                                 label="Hora de salida"
                                 type="time"
-                                defaultValue="07:30"
+                                defaultValue="00:00"
                                 //className={classes.textField}
                                 InputLabelProps={{
                                     shrink: true,
