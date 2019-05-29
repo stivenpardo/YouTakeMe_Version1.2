@@ -17,7 +17,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 //my Components
 import theme from '../theme2';
 import RegisterVehicule from './RegisterVehicule/RegisterVehicule';
-import RegisterPath from './RegisterPath';
+import RegisterPath from './RegisterPath/RegisterPath';
 import SelectPath from './SelectPaths/SelectPaths'
 import firebase from "firebase";
 import IconFacebook from '../Images/IconFacebook.png'
