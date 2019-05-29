@@ -145,9 +145,9 @@ class FormRegisterPath extends React.Component {
                                     }}
 
                                 >
-                                    <MenuItem value={10}>Que amuestre los vehiculos registrados</MenuItem>
-                                    <MenuItem value={20}>Moto</MenuItem>
-                                    <MenuItem value={30}>Taxi</MenuItem>
+                                    <MenuItem value={'carro'}>Que amuestre los vehiculos registrados</MenuItem>
+                                    <MenuItem value={'Moto'}>Moto</MenuItem>
+                                    <MenuItem value={'taxi'}>Taxi</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl style={styles.select}>
@@ -163,10 +163,10 @@ class FormRegisterPath extends React.Component {
                                         id: 'numberPassenger',
                                     }}
                                 >
-                                    <MenuItem value={10}>1</MenuItem>
-                                    <MenuItem value={20}>2</MenuItem>
-                                    <MenuItem value={30}>3</MenuItem>
-                                    <MenuItem value={40}>4</MenuItem>
+                                    <MenuItem value={1}>1</MenuItem>
+                                    <MenuItem value={2}>2</MenuItem>
+                                    <MenuItem value={3}>3</MenuItem>
+                                    <MenuItem value={4}>4</MenuItem>
 
                                 </Select>
                             </FormControl>

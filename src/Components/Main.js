@@ -166,8 +166,8 @@ class MainConcent extends React.Component {
       }
     componentDidMount() {
         this.initFirebase()
-        //this.loginFacebook;
-        this.loginGoogle();
+        this.loginFacebook;
+        //this.loginGoogle();
     }
      render(){
         const {styles}=theme;
@@ -219,7 +219,7 @@ class MainConcent extends React.Component {
                                     open={open}
                                     onClose={this.handleClose.bind(this)}
                                     >
-                                    <MenuItem onClick={()=>this.loginGoogle()}> Iniciar sesión</MenuItem>
+                                    <MenuItem onClick={()=>this.loginFacebook()}> Iniciar sesión</MenuItem>
                                     <MenuItem onClick={this.logOut.bind(this)}>Salir</MenuItem>
                                     </Menu>
                                 </div>

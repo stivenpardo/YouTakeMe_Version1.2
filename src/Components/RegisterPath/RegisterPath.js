@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 //..components materials
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import SwipeableViews from 'react-swipeable-views';
 //components of botton navigation
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -17,6 +20,17 @@ import theme from '../../theme2';
 import firebase from "firebase";
 import FormRegisterPaths from './FormRegisterPath';
 
+function TabContainer(props) {
+    return (
+      <Typography component="div" style={{ padding: 8 * 3 }}>
+        {props.children}
+      </Typography>
+    );
+  }
+  
+  TabContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+  }; 
 
 class RegisterPath extends React.Component {
     constructor(props) {
@@ -24,8 +38,8 @@ class RegisterPath extends React.Component {
         this.state = {
             openVehicule: false,
             //openPassenger: false,
-            value: 0,
             view: 0,
+            tabActive:0,
             
         }
     }
@@ -42,8 +56,11 @@ class RegisterPath extends React.Component {
     }
 
     handleChange(event, value) {
-        this.setState({ value });
+        this.setState({ tabActive:value});
     }
+    handleChangeIndex(index){
+        this.setState({ value: index });
+      };
 
     changeview(view) {
         console.log(view);
@@ -80,23 +97,33 @@ class RegisterPath extends React.Component {
         const { value } = this.state;
         const { styles } = theme;
         
+        
         return (
-            <div >
-                <AppBar position="static" color="default">
+            <div style={styles.rootNavegation}>
+                <AppBar position="static" color="default" >
                     <Tabs
                     value={value}
-                    onChange={()=>this.changeview()}
+                    onChange={this.handleChange.bind(this)}
                     variant="scrollable"
                     scrollButtons="on"
                     indicatorColor="primary"
                     textColor="primary"
+                    
                     >
-                    <Tab label="Registrar Ruta" icon={<RestoreIcon />} />
-                    <Tab label="Agredas" icon={<FavoriteIcon />} />
-                    <Tab label="Ubicación" icon={<LocationOnIcon />} />
+                    <Tab label="Registrar Ruta" icon={<RestoreIcon />} value={0} />
+                    <Tab label="Agredas" icon={<FavoriteIcon />} value={1}/>
+                    <Tab label="Ubicación" icon={<LocationOnIcon />} value={2}/>
                     </Tabs>
                 </AppBar>
-                
+                <SwipeableViews
+                    axis={'x-reverse'}
+                    index={this.state.tabActive}
+                    onChangeIndex={this.handleChangeIndex.bind(this)}
+                >
+                    <TabContainer> <FormRegisterPaths/></TabContainer>
+                    <TabContainer >item 2</TabContainer>
+                    <TabContainer >item 3</TabContainer>
+                </SwipeableViews>
                 <br />
                 <br />
                 <br />

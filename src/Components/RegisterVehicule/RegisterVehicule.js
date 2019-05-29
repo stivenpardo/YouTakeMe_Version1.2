@@ -24,63 +24,63 @@ function getSteps() {
 class RegisterVehicule extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  
+    this.state = {
       activeStep: 0,
-      tipoVehiculo:"",
+      tipoVehiculo: "",
       placa: "",
-      modelo:"",
+      modelo: "",
     }
   }
 
-  updateDataform(formValue){
+  updateDataform(formValue) {
     this.setState(formValue);
   }
-   getStepContent(stepIndex) {
+  getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return   <FormRegisterVehicule updateDataform={this.updateDataform.bind(this)}  /> ;
-  
+        return <FormRegisterVehicule updateDataform={this.updateDataform.bind(this)} />;
+
       case 1:
-            return <div>
-              <br/>
-              <br/>
-                <Grid container spacing={0} direction="column" alignItems="center" justify="center"> 
-                  <input 
-                    accept="image/*"
-                    style={theme.styles.input}
-                    id="file-car"
-                    multiple
-                    type="file"
-                  />
-                  <label htmlFor="file-car">
-                    <Button variant="outlined" component="span"  >
-                    <CloudUploadIcon style={theme.styles.rightIcon} />
-                      Subir
+        return <div>
+          <br />
+          <br />
+          <Grid container spacing={0} direction="column" alignItems="center" justify="center">
+            <input
+              accept="image/*"
+              style={theme.styles.input}
+              id="file-car"
+              multiple
+              type="file"
+            />
+            <label htmlFor="file-car">
+              <Button variant="outlined" component="span"  >
+                <CloudUploadIcon style={theme.styles.rightIcon} />
+                Subir
                     </Button>
-                  </label>
-              </Grid>
-            </div>
-            
+            </label>
+          </Grid>
+        </div>
+
       case 2:
         return <div>
-              <br/>
-              <br/>
-                <Grid container spacing={0} direction="column" alignItems="center" justify="center"> 
-                  <input 
-                    accept="image/*"
-                    style={theme.styles.input}
-                    id="file-car"
-                    multiple
-                    type="file"
-                  />
-                  <label htmlFor="file-car">
-                    <Button variant="outlined" component="span"  >
-                    <CloudUploadIcon style={theme.styles.rightIcon} />
-                      Subir
+          <br />
+          <br />
+          <Grid container spacing={0} direction="column" alignItems="center" justify="center">
+            <input
+              accept="image/*"
+              style={theme.styles.input}
+              id="file-car"
+              multiple
+              type="file"
+            />
+            <label htmlFor="file-car">
+              <Button variant="outlined" component="span"  >
+                <CloudUploadIcon style={theme.styles.rightIcon} />
+                Subir
                     </Button>
-                  </label>
-              </Grid>
-            </div>
+            </label>
+          </Grid>
+        </div>
       default:
         return 'Unknown stepIndex';
     }
@@ -92,12 +92,12 @@ class RegisterVehicule extends React.Component {
     }));
     const steps = getSteps();
     const { activeStep } = this.state;
-    if(activeStep === steps.length - 1){
+    if (activeStep === steps.length - 1) {
       //guardar
       this.setVehiculo();
     }
   }
- 
+
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
@@ -110,17 +110,18 @@ class RegisterVehicule extends React.Component {
     });
   }
 
-  setVehiculo(){
-    firebase.database().ref('usuarios3/idUsuaio/vehiculos/' + this.state.placa).set([{
+  setVehiculo() {
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('usuarios/'+userId+'/vehiculos/' + this.state.placa).set({
       tipoVehiculo: this.state.tipoVehiculo,
       modelo: this.state.modelo,
-    }]);
+    });
   }
-  
+
   render() {
     const steps = getSteps();
     const { activeStep } = this.state;
-    const {styles} = theme; 
+    const { styles } = theme;
 
     return (
       < div style={styles.rootStepper}>
@@ -139,24 +140,24 @@ class RegisterVehicule extends React.Component {
               <Button onClick={this.handleReset}>Registrar otro vehiculo</Button>
             </div>
           ) : (
-            <div>
-              <Typography >{this.getStepContent(activeStep)}</Typography>
-              <div style={styles.bottonStepper}>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  
-                >
-                  Atras
+              <div>
+                <Typography >{this.getStepContent(activeStep)}</Typography>
+                <div style={styles.bottonStepper}>
+                  <Button
+                    disabled={activeStep === 0}
+                    onClick={this.handleBack}
+
+                  >
+                    Atras
                 </Button>
-                <Button variant="contained" color="primary"  onClick={this.handleNext}>
-                  {activeStep === steps.length - 1 ? 'Guardar' : 'Siguiente'}
-                </Button>
+                  <Button variant="contained" color="primary" onClick={this.handleNext}>
+                    {activeStep === steps.length - 1 ? 'Guardar' : 'Siguiente'}
+                  </Button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
-      
+
       </div >
     )
   }

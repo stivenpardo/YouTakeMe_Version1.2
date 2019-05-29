@@ -107,6 +107,10 @@ const theme = createMuiTheme({
     rootStepper: {
       width: '90%',
     },
+    rootNavegation: {
+      flexGrow: 1,
+      width: '80%',
+    },
     ItemsList: {
       alignSelf: 'center'
     },
