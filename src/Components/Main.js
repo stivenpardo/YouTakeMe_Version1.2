@@ -11,8 +11,10 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
-import Fab from '@material-ui/core/Fab';
-import NavigationIcon from '@material-ui/icons/Navigation';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 //my Components
 import theme from '../theme2';
 import RegisterVehicule from './RegisterVehicule/RegisterVehicule';
@@ -158,8 +160,8 @@ class MainConcent extends React.Component {
     }
     componentDidMount() {
         this.initFirebase()
-        this.loginFacebook();
-        //this.loginGoogle();
+        //this.loginFacebook();
+        this.loginGoogle();
     }
     render() {
         const { styles } = theme;
@@ -183,8 +185,6 @@ class MainConcent extends React.Component {
                                 <Button disabled={this.state.userAccount == null ? true : false} color={"default"} onClick={() => this.changeView("registerPath")}>Registro de ruta</Button>
                                 <Button disabled={this.state.userAccount == null ? true : false} color={"default"} onClick={() => this.changeView("selectPath")}>Seleccionar rutas</Button>
 
-
-
                                 {this.state.auth && (
                                     <div>
                                         <IconButton
@@ -194,7 +194,6 @@ class MainConcent extends React.Component {
                                             color={"default"}
                                         >
                                             {this.state.userAccount == null ? <AccountCircle /> : <Avatar alt="Usuario" src={this.state.userAccount.photoURL} />}
-
 
                                         </IconButton>
                                         <Menu
@@ -211,7 +210,22 @@ class MainConcent extends React.Component {
                                             open={open}
                                             onClose={this.handleClose.bind(this)}
                                         >
-                                            <MenuItem onClick={this.loginFacebook.bind(this)}> Iniciar sesión</MenuItem>
+                                            <ExpansionPanel>
+                                                <ExpansionPanelSummary
+                                                expandIcon={<ExpandMoreIcon />}
+                                                aria-controls="panel1a-content"
+                                                id="panel1a-header"
+                                                >
+                                                <Typography>Iniciar sesión con </Typography>
+                                                </ExpansionPanelSummary>
+                                                <ExpansionPanelDetails>
+                                                <Typography>
+                                                    <MenuItem > Facebook</MenuItem>
+                                                    <MenuItem onClick={()=>this.loginGoogle()}> Google</MenuItem>
+                                                </Typography>
+                                                </ExpansionPanelDetails>
+                                            </ExpansionPanel>
+                                                                                                                                  
                                             <MenuItem onClick={this.logOut.bind(this)}>Salir</MenuItem>
                                         </Menu>
                                     </div>
