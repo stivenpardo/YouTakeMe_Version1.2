@@ -37,16 +37,7 @@ class FormRegisterVehicule extends React.Component {
     this.setState({ [prop]: event.target.value });
     this.props.updateDataform({ [prop]: event.target.value })
   }
-  getVehicule() {
-    var userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/usuarios/' + userId).once('value').then(function (snapshot) {
-      var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    });
-  }
-
-  componentDidMount() {
-    this.initFirebase
-  }
+  
 
   render() {
     const { styles } = theme;

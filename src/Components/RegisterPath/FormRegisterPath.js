@@ -7,15 +7,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
-
 //import DateFnsUtils from '@date-io/date-fns';
 //import { MuiPickersUtilsProvider, TimePicker } from 'material-ui-pickers';
-//components of botton navigation
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 //import textfiels
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -56,7 +49,7 @@ class FormRegisterPath extends React.Component {
     handleChange(event, value) {
         this.setState({ value });
     }
-  
+
 
     handleButtonClick = () => {
         if (!this.state.loading) {
@@ -83,9 +76,9 @@ class FormRegisterPath extends React.Component {
             var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
         });
     }
-    clearForm(){
-        let registerPath=['origin','distination','departureTime','typeVehicule','numberPassangers','meeting point', 'commentary']
-        
+    clearForm() {
+        let registerPath = ['origin', 'distination', 'departureTime', 'typeVehicule', 'numberPassangers', 'meeting point', 'commentary']
+
         forEach(element => {
             //recorrer el vector despues llamar este metodo en el setREGISTERPath y colocarlo en lo ultimo por medio de un try catch ...    
         });

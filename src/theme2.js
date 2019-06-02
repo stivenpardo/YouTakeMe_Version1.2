@@ -52,12 +52,11 @@ const theme = createMuiTheme({
       left: '5%',
       textAlign:'left'
     },
-    darkStyleBackgroud: {
+    whiteStyleBackgroud: {
       background: 'linear-gradient(45deg, #e8eaf6 30%, #f5f5f5 90%)',
     },
-    whiteStyleBackgroud: {
+    darkStyleBackgroud: {
       background: 'linear-gradient(45deg, #424242 30%, #616161 90%)',
-
     },
     AppBar: {
       background: 'rgba(0,0,0,.0)',

@@ -13,95 +13,87 @@ import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
-
 //my Components
 import theme from '../theme2';
 import RegisterVehicule from './RegisterVehicule/RegisterVehicule';
 import RegisterPath from './RegisterPath/RegisterPath';
 import SelectPath from './SelectPaths/SelectPaths'
 import firebase from "firebase";
-import IconFacebook from '../Images/IconFacebook.png'
-import IconGoogle from '../Images/IconGoogle.png'
 
 //import Book from '../data/stories.json';
 
 class MainConcent extends React.Component {
-   
-        state = {
-            auth: true,
-            anchorEl: null,
-            styleSelected:true,
-            view:null,
-            userAccount:null
-        };
 
-      
-        
-      handleChange(event){
+    state = {
+        auth: true,
+            anchorEl: null,
+        styleSelected: true,
+        view: null,
+        userAccount: null
+    };
+
+
+
+    handleChange(event) {
         this.setState({ auth: event.target.checked });
-      };
-      handleChangeStyle(event){
+    };
+    handleChangeStyle(event) {
         this.setState({ styleSelected: event.target.checked });
-      };
-    
-      handleMenu(event){
+    };
+
+    handleMenu(event) {
         this.setState({ anchorEl: event.currentTarget });
-      };
-    
-      handleClose(){       
+    };
+
+    handleClose() {
         this.setState({ anchorEl: null });
-      };
-      selectLecture(currentLecture){
-        this.setState({currentLecture});
-      }
-  
-      renderInformation(){
-          console.log(this.state.view);
-        switch(this.state.view){
+    };
+
+    renderInformation() {
+
+        switch (this.state.view) {
             case 'Benficios':
-                return(<div>Beneficios</div>);   
+                return (<div>Beneficios</div>);
             case 'registerVehicule':
-                return (<RegisterVehicule/>)
+                return (<RegisterVehicule />)
             case 'registerPath':
-                return (<RegisterPath/>)
+                return (<RegisterPath />)
             case 'selectPath':
-                return (<SelectPath/>)
-            case 'Singin':
-                break;           
+                return (<SelectPath />)
             default:
                 break;
-                /*return (<div style={theme.styles.defaultLogin}> 
-                    <Typography> Iniciar Sesión Con  </Typography>
-                    <br/>
-                    <Button variant="outlined" aria-label="Delete" style={theme.styles.ButtonDefaultLogin} >
-                       <img src={IconFacebook}/>
-                           acebook
-                    </Button>  
-                    <br/>
-                    <Button variant="outlined" aria-label="Delete" style={theme.styles.ButtonDefaultLogin} >
-                    <img src={IconGoogle}/>
-                           oogle  
-                    </Button>           
-                    
-            </div>)*/
+            /*return (<div style={theme.styles.defaultLogin}> 
+                <Typography> Iniciar Sesión Con  </Typography>
+                <br/>
+                <Button variant="outlined" aria-label="Delete" style={theme.styles.ButtonDefaultLogin} >
+                   <img src={IconFacebook}/>
+                       acebook
+                </Button>  
+                <br/>
+                <Button variant="outlined" aria-label="Delete" style={theme.styles.ButtonDefaultLogin} >
+                <img src={IconGoogle}/>
+                       oogle  
+                </Button>           
+                
+        </div>)*/
 
         }
 
-      }
-      changeView(value, userAccount){
-            this.setState(
-                {
-                    view:value
-                    
-                }
-            )
-            if(value=="Singin"){
-                this.initFirebase();
-                //this.loginFacebook();
-                this.loginGoogle();
+    }
+    changeView(value, userAccount) {
+        this.setState(
+            {
+                view: value
+
             }
-      }
-      initFirebase() {
+        )
+        if (value == "Singin") {
+            this.initFirebase();
+            this.loginFacebook();
+            //this.loginGoogle();
+        }
+    }
+    initFirebase() {
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyDiQZvc_MU0wDrurZPAU2wjyLMlaQ5c_n0",
@@ -113,18 +105,18 @@ class MainConcent extends React.Component {
         };
         firebase.initializeApp(config);
     }
-    loginGoogle(){
+    loginGoogle() {
         var provider = new firebase.auth.GoogleAuthProvider();
         this.handleClose();
 
-        firebase.auth().signInWithPopup(provider).then((result)=> {
+        firebase.auth().signInWithPopup(provider).then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            this.setState({userAccount:user})
+            this.setState({ userAccount: user })
             // ...
-          }).catch((error)=> {
+        }).catch((error) => {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -133,22 +125,22 @@ class MainConcent extends React.Component {
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
             // ...
-          });
+        });
 
-        
+
     }
-    loginFacebook(){
+    loginFacebook() {
         var provider = new firebase.auth.FacebookAuthProvider();
         this.handleClose();
-        firebase.auth().signInWithPopup(provider).then((result)=> {
+        firebase.auth().signInWithPopup(provider).then((result) => {
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
             //console.log(user)
-            this.setState({userAccount:user})
+            this.setState({ userAccount: user })
             // ...
-          }).catch((error)=> {
+        }).catch((error) => {
 
             // Handle Errors here.
             var errorCode = error.code;
@@ -159,86 +151,86 @@ class MainConcent extends React.Component {
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
             // ...
-          });
+        });
     }
-    logOut(){
-        this.setState({ anchorEl: null,userAccount:null });
-      }
+    logOut() {
+        this.setState({ anchorEl: null, userAccount: null });
+    }
     componentDidMount() {
         this.initFirebase()
-        this.loginFacebook;
+        this.loginFacebook();
         //this.loginGoogle();
     }
-     render(){
-        const {styles}=theme;
+    render() {
+        const { styles } = theme;
         const open = Boolean(this.state.anchorEl);
         return (
-        
+
             <>
-               {/*  <Grid container spacing={24} style={this.state.styleSelected?styles.darkStyleBackgroud:styles.whiteStyleBackgroud} > */}
-                
-                <Grid container spacing={24} style={styles.darkStyleBackgroud} >
+                {/*  <Grid container spacing={24} style={this.state.styleSelected?styles.darkStyleBackgroud:styles.whiteStyleBackgroud} > */}
+
+                <Grid container spacing={24} style={styles.whiteStyleBackgroud} >
                     <Grid item xs={12}>
                         <AppBar position="static" style={styles.AppBar}>
                             <Toolbar>
-                                <img src={Logo}/>
+                                <img src={Logo} />
                                 <Typography variant="h4" color={"default"} style={styles.grow}>
-                                 ¿Me llevas?
+                                    ¿Me llevas?
                                 </Typography>
-                                
-                                <Button disabled={this.state.userAccount==null?true:false} color={"default"}  onClick={()=>this.changeView("")}>Beneficios</Button>
-                                 <Button disabled={this.state.userAccount==null?true:false} color={"default"}  onClick={()=>this.changeView("registerVehicule")}>Registrar vehiculo</Button>
-                                <Button disabled={this.state.userAccount==null?true:false} color={"default"}  onClick={()=>this.changeView("registerPath")}>Registro de ruta</Button>
-                                <Button disabled={this.state.userAccount==null?true:false} color={"default"}  onClick={()=>this.changeView("selectPath")}>Seleccionar rutas</Button>
-                             
 
-                                
+                                <Button disabled={this.state.userAccount == null ? true : false} color={"default"} onClick={() => this.changeView("")}>Beneficios</Button>
+                                <Button disabled={this.state.userAccount == null ? true : false} color={"default"} onClick={() => this.changeView("registerVehicule")}>Registrar vehiculo</Button>
+                                <Button disabled={this.state.userAccount == null ? true : false} color={"default"} onClick={() => this.changeView("registerPath")}>Registro de ruta</Button>
+                                <Button disabled={this.state.userAccount == null ? true : false} color={"default"} onClick={() => this.changeView("selectPath")}>Seleccionar rutas</Button>
+
+
+
                                 {this.state.auth && (
-                                <div>
-                                    <IconButton
-                                    aria-owns={open ? 'menu-appbar' : undefined}
-                                    aria-haspopup="true"
-                                    onClick={this.handleMenu.bind(this)}
-                                    color={"default"}
-                                    >
-                                    {this.state.userAccount==null?<AccountCircle />:<Avatar alt="Usuario" src={this.state.userAccount.photoURL} />}
-                                    
-                                    
-                                    </IconButton>
-                                    <Menu
-                                    id="menu-appbar"
-                                    anchorEl={this.state.anchorEl}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={open}
-                                    onClose={this.handleClose.bind(this)}
-                                    >
-                                    <MenuItem onClick={()=>this.loginFacebook()}> Iniciar sesión</MenuItem>
-                                    <MenuItem onClick={this.logOut.bind(this)}>Salir</MenuItem>
-                                    </Menu>
-                                </div>
+                                    <div>
+                                        <IconButton
+                                            aria-owns={open ? 'menu-appbar' : undefined}
+                                            aria-haspopup="true"
+                                            onClick={this.handleMenu.bind(this)}
+                                            color={"default"}
+                                        >
+                                            {this.state.userAccount == null ? <AccountCircle /> : <Avatar alt="Usuario" src={this.state.userAccount.photoURL} />}
+
+
+                                        </IconButton>
+                                        <Menu
+                                            id="menu-appbar"
+                                            anchorEl={this.state.anchorEl}
+                                            anchorOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            transformOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            open={open}
+                                            onClose={this.handleClose.bind(this)}
+                                        >
+                                            <MenuItem onClick={this.loginFacebook.bind(this)}> Iniciar sesión</MenuItem>
+                                            <MenuItem onClick={this.logOut.bind(this)}>Salir</MenuItem>
+                                        </Menu>
+                                    </div>
                                 )}
                             </Toolbar>
                         </AppBar>
                     </Grid>
-                    <Grid container  direction="row" justify="flex-start" alignItems="flex-start"  style={styles.ContentMain}>
-                                {
-                                    this.renderInformation()
-                                }
+                    <Grid container direction="row" justify="flex-start" alignItems="flex-start" style={styles.ContentMain}>
+                        {
+                            this.renderInformation()
+                        }
                     </Grid>
-                    
 
-                                                
+
+
                 </Grid>
             </>
         )
-}
+    }
 }
 export default withTheme()(MainConcent)
 
