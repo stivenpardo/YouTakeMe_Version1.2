@@ -26,9 +26,6 @@ import passangers from '../../Images/passanger.png'
 import handshake from '../../Images/handshake.png'
 import comment from '../../Images/comment.png'
 
-
-
-
 class FormRegisterPath extends React.Component {
     constructor(props) {
         super(props);

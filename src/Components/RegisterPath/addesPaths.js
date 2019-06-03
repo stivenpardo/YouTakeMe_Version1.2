@@ -1,7 +1,7 @@
-import react from 'react'; 
+import React from 'react'; 
 import firebase from 'firebase';
 import { Typography } from '@material-ui/core';
-class addesPaths extends react.Component {
+class addesPaths extends React.Component {
 
     constructor(props){
         super(props);
@@ -33,7 +33,7 @@ class addesPaths extends react.Component {
     render(){
         return(
             <>
-                <Typography> {this.state.paths.destination.comment} </Typography>
+                <Typography> {this.state.paths} </Typography>
             </>
         )
     }
