@@ -1,0 +1,50 @@
+{
+  "paths" : {
+    "centr" : {
+      "comment" : "fghfghdfg",
+      "departureTime" : "",
+      "meetingPoint" : "hgfh",
+      "numberPassenger" : 3,
+      "origin" : "santacatalina",
+      "typeVehicule" : "taxi"
+    },
+    "la paz" : {
+      "comment" : "llamar",
+      "departureTime" : "16:44",
+      "meetingPoint" : "cafeteria",
+      "numberPassenger" : 2,
+      "origin" : "unicomfacauca",
+      "typeVehicule" : "taxi"
+    },
+    "unicomfacauca" : {
+      "comment" : "llamar a 3219115240",
+      "departureTime" : "16:30",
+      "meetingPoint" : "placita campecina la 5",
+      "numberPassenger" : 1,
+      "origin" : "sanjose ",
+      "typeVehicule" : "Moto"
+    }
+  },
+  "vehiculos" : {
+    "5635" : {
+      "modelo" : "201152",
+      "tipoVehiculo" : "Taxi"
+    },
+    "FRB26E" : {
+      "modelo" : "2019",
+      "tipoVehiculo" : "Moto"
+    },
+    "LLL888" : {
+      "modelo" : "2008",
+      "tipoVehiculo" : 30
+    },
+    "hhhrr" : {
+      "modelo" : "2019",
+      "tipoVehiculo" : 20
+    },
+    "ooooere" : {
+      "modelo" : "201",
+      "tipoVehiculo" : "Moto"
+    }
+  }
+}

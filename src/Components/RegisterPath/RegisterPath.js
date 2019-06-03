@@ -16,6 +16,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import theme from '../../theme2';
 import firebase from "firebase";
 import FormRegisterPaths from './FormRegisterPath';
+import addesPaths from './addesPaths';
 
 function TabContainer(props) {
     return (
@@ -35,7 +36,6 @@ class RegisterPath extends React.Component {
         this.state = {
             openVehicule: false,
             //openPassenger: false,
-            view: 0,
             tabActive:0,
             
         }
@@ -59,30 +59,6 @@ class RegisterPath extends React.Component {
         this.setState({ value: index });
       };
 
-    changeview(view) {
-        console.log(view);
-        this.setState(
-            {
-                view //view:view
-            }
-        )
-    }
-
-    renderComponnents() {
-        const op = this.state.view;
-        switch (op) {
-            case 'rutas':
-                return (<FormRegisterPaths/>);
-            case 'agregadas':
-                return (<RegisterPath /* changeview={this.changeview.bind(this)} */ />);
-            case 'ubicación':
-                return (<SelectPath />);
-        }
-        return (
-            <SelectPath />
-        )
-
-    }
    
     getVehicule() {
         var userId = firebase.auth().currentUser.uid;
@@ -117,11 +93,10 @@ class RegisterPath extends React.Component {
                     index={this.state.tabActive}
                     onChangeIndex={this.handleChangeIndex.bind(this)}
                 >
-                    <TabContainer> <FormRegisterPaths/></TabContainer>
-                    <TabContainer >item 2</TabContainer>
+                    <TabContainer> <FormRegisterPaths/> </TabContainer>
+                    <TabContainer > <addesPaths/> </TabContainer>
                     <TabContainer >item 3</TabContainer>
                 </SwipeableViews>
-                <br />
                 <Map style={styles.map} google={this.props.google} zoom={14}>
 
                     <Marker onClick={this.onMarkerClick}

@@ -42,6 +42,14 @@ const theme = createMuiTheme({
       left: '70%',
       textAlign:'left'
     },
+    buttonSuccess: {
+      backgroundColor: green[500],
+      '&:hover': {
+        backgroundColor: green[700],
+      },
+      left: '80%',
+      textAlign:'left'
+    },
     ContentMain: {
       paddingLeft: 200,
       paddingTop: 80,
@@ -117,7 +125,7 @@ const theme = createMuiTheme({
       height: 350,
       position: 'absolute',
       //paddingTop:100,
-      marginTop: '75px',
+      marginTop: '50px',
       marginLeft: '90px',
       textAlign:'center'
       /*paddingLeft:450,
@@ -158,18 +166,12 @@ const theme = createMuiTheme({
     rootStepperdd: {
       width: 500,
     },
-    buttonSuccess: {
-      backgroundColor: green[500],
-      '&:hover': {
-        backgroundColor: green[700],
-      },
-    },
     fabProgress: {
       color: green[500],
       position: 'absolute',
-      top: -6,
-      left: -6,
-      zIndex: 1,
+      top: "60.5%",
+      left: '78.5%',
+      
     },
 
   }

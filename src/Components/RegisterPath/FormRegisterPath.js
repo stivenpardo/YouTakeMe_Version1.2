@@ -1,6 +1,5 @@
 import React from 'react';
 //..components materials
-import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -102,14 +101,20 @@ class FormRegisterPath extends React.Component {
           numberPassenger: this.state.numberPassenger,
           meetingPoint: this.state.meetingPoint,
           comment: this.state.comment,
+        }, (error)=>{
+            if(error) {
+                console.error("error")
+            } else {
+                this.clearForm();
+            }
         });
       }
     clearForm() {
-        let registerPath = ['origin', 'distination', 'departureTime', 'typeVehicule', 'numberPassangers', 'meetingPoint', 'comment']
+        let registerPath = ['origin', 'destination', 'departureTime', 'tipoVehiculo', 'numberPassenger', 'meetingPoint', 'comment']
 
-        forEach(element => {
-            //recorrer el vector despues llamar este metodo en el setREGISTERPath y colocarlo en lo ultimo por medio de un try catch ...    
-        });
+        registerPath.forEach(element => {
+                this.setState({[element]:""})
+        })
     }
     componentWillUnmount() {
         clearTimeout(this.timer);
