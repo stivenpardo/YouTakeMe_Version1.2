@@ -122,8 +122,6 @@ class RegisterPath extends React.Component {
                     <TabContainer >item 3</TabContainer>
                 </SwipeableViews>
                 <br />
-                <br />
-                <br />
                 <Map style={styles.map} google={this.props.google} zoom={14}>
 
                     <Marker onClick={this.onMarkerClick}

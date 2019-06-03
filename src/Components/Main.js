@@ -21,6 +21,9 @@ import RegisterVehicule from './RegisterVehicule/RegisterVehicule';
 import RegisterPath from './RegisterPath/RegisterPath';
 import SelectPath from './SelectPaths/SelectPaths'
 import firebase from "firebase";
+//icones
+import iconFacebook from '../Images/IconFacebook.png'
+import iconGoogle from '../Images/IconGoogle.png'
 
 
 //import Book from '../data/stories.json';
@@ -221,8 +224,11 @@ class MainConcent extends React.Component {
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails>
                                                 <Typography>
-                                                    <MenuItem > Facebook</MenuItem>
-                                                    <MenuItem onClick={()=>this.loginGoogle()}> Google</MenuItem>
+                                                    <MenuItem onClick={()=>this.loginFacebook()}>
+                                                        <img src={iconFacebook}/>acebook
+                                                    </MenuItem>
+                                                    <MenuItem onClick={()=>this.loginGoogle()}>
+                                                        <img src={iconGoogle}/>oogle</MenuItem>
                                                 </Typography>
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>

@@ -40,8 +40,13 @@ class FormRegisterPath extends React.Component {
             view: 0,
             loading: false,
             success: false,
+            origin: '',
+            destination: '',
+            departureTime: '',
             tipoVehiculo: "",
             numberPassenger: "",
+            meetingPoint: '',
+            comment: '',
         }
     }
     handleClose() {
@@ -52,7 +57,7 @@ class FormRegisterPath extends React.Component {
         this.setState({ open: true })
     }
 
-    handleTextFiledChange = prop => event => {
+    handleTextFiledChange = prop => event => {      
         this.setState({ [prop]: event.target.value });
     }
 
@@ -66,8 +71,9 @@ class FormRegisterPath extends React.Component {
             this.setState(
                 {
                     success: false,
-                    loading: true,
+                    loading: true,                   
                 },
+                
                 () => {
                     this.timer = setTimeout(() => {
                         this.setState({
@@ -76,6 +82,7 @@ class FormRegisterPath extends React.Component {
                         });
                     }, 2000);
                 },
+                this.setPath() 
             );
         }
     };
@@ -86,8 +93,19 @@ class FormRegisterPath extends React.Component {
             var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
         });
     }
+    setPath() {
+        var userId = firebase.auth().currentUser.uid;
+        firebase.database().ref('usuarios/'+userId+'/paths/'+this.state.destination).set({
+          origin: this.state.origin,
+          departureTime: this.state.departureTime,
+          typeVehicule: this.state.tipoVehiculo,
+          numberPassenger: this.state.numberPassenger,
+          meetingPoint: this.state.meetingPoint,
+          comment: this.state.comment,
+        });
+      }
     clearForm() {
-        let registerPath = ['origin', 'distination', 'departureTime', 'typeVehicule', 'numberPassangers', 'meeting point', 'commentary']
+        let registerPath = ['origin', 'distination', 'departureTime', 'typeVehicule', 'numberPassangers', 'meetingPoint', 'comment']
 
         forEach(element => {
             //recorrer el vector despues llamar este metodo en el setREGISTERPath y colocarlo en lo ultimo por medio de un try catch ...    
@@ -100,13 +118,16 @@ class FormRegisterPath extends React.Component {
         const { styles } = theme;
         const { loading, success } = this.state;
         return (
-            <div >
-                <Grid container item xs={12}>
-                    <Grid item xs={12}>
-                        <Grid container xs={6}>
+            <div>
+                
                             <TextField
-                                id="input-with-icon-textfield"
+                                autoFocus
+                                margin="dense"
+                                id="origin"
+                                value={this.state.origin}
                                 label="Origen"
+                                type="text"
+                                onChange={this.handleTextFiledChange("origin")}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -114,11 +135,16 @@ class FormRegisterPath extends React.Component {
                                         </InputAdornment>
                                     ),
                                 }}
+                                style={styles.textfiels}
                             />
                             <TextField
-
-                                id="input-with-icon-textfield"
+                                autoFocus
+                                margin="dense"
+                                id="destination"
+                                value={this.state.destination}
                                 label="Destino"
+                                type="text"
+                                onChange={this.handleTextFiledChange("destination")}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -126,12 +152,17 @@ class FormRegisterPath extends React.Component {
                                         </InputAdornment>
                                     ),
                                 }}
+                                style={styles.textfiels}
                             />
                             <TextField
-                                id="time"
+                                autoFocus
+                                margin="dense"
+                                id="departureTime"
+                                value={this.state.departureTime}
                                 label="Hora de salida"
                                 type="time"
                                 defaultValue="00:00"
+                                onChange={this.handleTextFiledChange("departureTime")}
                                 //className={classes.textField}
                                 InputLabelProps={{
                                     shrink: true,
@@ -146,8 +177,9 @@ class FormRegisterPath extends React.Component {
                                         </InputAdornment>
                                     ),
                                 }}
+                                style={styles.textfiels}
                             />
-                            <FormControl style={styles.select}>
+                            <FormControl style={styles.textfiels}>
                                 <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
                                 <Select
                                     open={this.state.open}
@@ -158,13 +190,7 @@ class FormRegisterPath extends React.Component {
                                     inputProps={{
                                         name: 'tipoVehiculo',
                                         id: 'tipoVehiculo',
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                < img src={automobile}/>
-                                            </InputAdornment>
-                                        ),
-
-                                    }}
+                                    }}            
                                     
                                 >
                                     <MenuItem value={'carro'}>Que amuestre los vehiculos registrados</MenuItem>
@@ -172,7 +198,7 @@ class FormRegisterPath extends React.Component {
                                     <MenuItem value={'taxi'}>Taxi</MenuItem>
                                 </Select>
                             </FormControl>
-                            <FormControl style={styles.select}>
+                            <FormControl style={styles.textfiels}>
                                 <InputLabel htmlFor="demo-controlled-open-select"> Numero de pasajeros</InputLabel>
                                 <Select
                                     open={this.state.open}
@@ -183,11 +209,6 @@ class FormRegisterPath extends React.Component {
                                     inputProps={{
                                         name: 'numberPassenger',
                                         id: 'numberPassenger',
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                < img src={passangers}/>
-                                            </InputAdornment>
-                                        ),
                                     }}
                                     
                                 >
@@ -199,8 +220,13 @@ class FormRegisterPath extends React.Component {
                                 </Select>
                             </FormControl>
                             <TextField
-                                id="input-with-icon-textfield"
+                                autoFocus
+                                margin="dense"
+                                id="meetingPoint"
+                                value={this.state.meetingPoint}
                                 label="Punto de encuentro"
+                                type="text"
+                                onChange={this.handleTextFiledChange("meetingPoint")}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -208,11 +234,16 @@ class FormRegisterPath extends React.Component {
                                         </InputAdornment>
                                     ),
                                 }}
+                                style={styles.textfiels}
                             />
                             <TextField
-
-                                id="idCommet"
+                                autoFocus
+                                margin="dense"
+                                id="comment"
+                                value={this.state.comment}
                                 label="Comentario"
+                                type="area"
+                                onChange={this.handleTextFiledChange("comment")}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -220,23 +251,13 @@ class FormRegisterPath extends React.Component {
                                         </InputAdornment>
                                     ),
                                 }}
+                                style={styles.textfiels}
                             />
                             <br />
                             <Fab color="primary" style={styles.buttonSuccess} onClick={this.handleButtonClick}>
                                 {success ? <CheckIcon /> : <SaveIcon />}
                             </Fab>
                             {loading && <CircularProgress size={68} style={styles.fabProgress} />}
-
-
-                        </Grid>
-
-                        <Grid item={6}>
-                            dsafsadsdafasd
-                        </Grid>
-
-                    </Grid>
-
-                </Grid>
 
 
             </div>

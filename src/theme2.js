@@ -107,7 +107,6 @@ const theme = createMuiTheme({
       width: '90%',
     },
     rootNavegation: {
-      flexGrow: 1,
       width: '80%',
     },
     ItemsList: {
@@ -151,6 +150,10 @@ const theme = createMuiTheme({
       marginTop: '-75px',
       marginLeft: '-75px',
       textAlign:'center'
+    },
+    textfiels:{
+      width: 185,
+      marginLeft: '90px',
     },
     rootStepperdd: {
       width: 500,
