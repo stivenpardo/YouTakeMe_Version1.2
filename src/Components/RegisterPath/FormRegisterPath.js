@@ -18,6 +18,16 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 //my Components
 import theme from '../../theme2';
 import firebase from "firebase";
+// Icones
+import origen from '../../Images/origen.png'
+import placeholder from '../../Images/placeholder.png'
+import timeOut from '../../Images/timeOut.png'
+import automobile from '../../Images/automobile.png'
+import passangers from '../../Images/passanger.png'
+import handshake from '../../Images/handshake.png'
+import comment from '../../Images/comment.png'
+
+
 
 
 class FormRegisterPath extends React.Component {
@@ -100,7 +110,7 @@ class FormRegisterPath extends React.Component {
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
-                                            <AccountCircle />
+                                            < img src={origen}/>
                                         </InputAdornment>
                                     ),
                                 }}
@@ -112,7 +122,7 @@ class FormRegisterPath extends React.Component {
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
-                                            <AccountCircle />
+                                            < img src={placeholder}/>
                                         </InputAdornment>
                                     ),
                                 }}
@@ -129,6 +139,13 @@ class FormRegisterPath extends React.Component {
                                 inputProps={{
                                     step: 300, // 5 min
                                 }}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            < img src={timeOut}/>
+                                        </InputAdornment>
+                                    ),
+                                }}
                             />
                             <FormControl style={styles.select}>
                                 <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
@@ -141,9 +158,14 @@ class FormRegisterPath extends React.Component {
                                     inputProps={{
                                         name: 'tipoVehiculo',
                                         id: 'tipoVehiculo',
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                < img src={automobile}/>
+                                            </InputAdornment>
+                                        ),
 
                                     }}
-
+                                    
                                 >
                                     <MenuItem value={'carro'}>Que amuestre los vehiculos registrados</MenuItem>
                                     <MenuItem value={'Moto'}>Moto</MenuItem>
@@ -161,7 +183,13 @@ class FormRegisterPath extends React.Component {
                                     inputProps={{
                                         name: 'numberPassenger',
                                         id: 'numberPassenger',
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                < img src={passangers}/>
+                                            </InputAdornment>
+                                        ),
                                     }}
+                                    
                                 >
                                     <MenuItem value={1}>1</MenuItem>
                                     <MenuItem value={2}>2</MenuItem>
@@ -176,7 +204,7 @@ class FormRegisterPath extends React.Component {
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
-                                            <AccountCircle />
+                                            < img src={handshake}/>
                                         </InputAdornment>
                                     ),
                                 }}
@@ -188,7 +216,7 @@ class FormRegisterPath extends React.Component {
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
-                                            <AccountCircle />
+                                            <img src={comment}/>
                                         </InputAdornment>
                                     ),
                                 }}
