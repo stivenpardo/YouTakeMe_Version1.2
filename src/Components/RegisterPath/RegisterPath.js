@@ -16,7 +16,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import theme from '../../theme2';
 import firebase from "firebase";
 import FormRegisterPaths from './FormRegisterPath';
-import addesPaths from './addesPaths';
+import addesPaths from './AddesPaths';
 
 function TabContainer(props) {
     return (
