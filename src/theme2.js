@@ -173,6 +173,12 @@ const theme = createMuiTheme({
       left: '78.5%',
       
     },
+    cardGrid:{
+        width:250,
+        minWidth:250,
+        overflow:'hidden'
+    },
+    
 
   }
 });

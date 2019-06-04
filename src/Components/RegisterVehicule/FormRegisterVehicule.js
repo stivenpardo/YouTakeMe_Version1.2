@@ -9,7 +9,6 @@ import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import theme from '../../theme2';
 //my components
-import firebase from "firebase";
 
 class FormRegisterVehicule extends React.Component {
   constructor(props) {

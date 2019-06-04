@@ -21,6 +21,7 @@ import RegisterVehicule from './RegisterVehicule/RegisterVehicule';
 import RegisterPath from './RegisterPath/RegisterPath';
 import SelectPath from './SelectPaths/SelectPaths'
 import firebase from "firebase";
+import CardPaths from './SelectPaths/CardPaths';
 //icones
 import iconFacebook from '../Images/IconFacebook.png'
 import iconGoogle from '../Images/IconGoogle.png'
@@ -65,7 +66,7 @@ class MainConcent extends React.Component {
             case 'registerPath':
                 return (<RegisterPath />)
             case 'selectPath':
-                return (<SelectPath />)
+                return (<CardPaths/>)
             default:
                 break;
             /*return (<div style={theme.styles.defaultLogin}> 
