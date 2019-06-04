@@ -24,7 +24,7 @@ class SelectPath extends React.Component {
             return Path.map(routes=>{
                 return(
                     <Grid item xs={6} sm={3} style={theme.styles.cardGrid} key={"k"+routes.key}>
-                    <CardPaths {...routes} Pathid={routes.key} likePath={this.setLike.bind(this)} liked={this.state.likes} /*disabledlikes={this.state.userAccount==null?true:false}*//>
+                    <CardPaths {...routes} Pathid={routes.key} likePath={this.setLike.bind(this)} liked={this.state.likes} /*disabledlikes={this.state.userAccount==null?true:false}*//>{/* los ... trae todos los atributos del que se esta haciendo */}
                     </Grid>
                 )
             });

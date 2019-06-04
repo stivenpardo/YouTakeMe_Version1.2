@@ -125,7 +125,7 @@ const theme = createMuiTheme({
       height: 350,
       position: 'absolute',
       //paddingTop:100,
-      marginTop: '50px',
+      
       marginLeft: '90px',
       textAlign:'center'
       /*paddingLeft:450,

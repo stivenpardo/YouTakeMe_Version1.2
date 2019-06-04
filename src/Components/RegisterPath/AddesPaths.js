@@ -7,7 +7,7 @@ class AddesPaths extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            paths: {
+            paths: [{
                 destination: {
                     comment: "",
                     departureTime: "",
@@ -16,13 +16,14 @@ class AddesPaths extends React.Component {
                     origin: "",
                     typeVehicule: ""
                 }
-            }
+            }]
         }
     }
     getPaths() {
         var userId = firebase.auth().currentUser.uid;
-        return firebase.database().ref('/usuarios/' + userId + '/paths/' + 'destination').once('value').then(function (snapshot) {
-            var paths = snapshot.val();
+        return firebase.database().ref('/usuarios/' + userId + '/paths/' ).once('value').then(function (snapshot) {
+            var paths = Object.values(snapshot.val());
+            console.log(paths)
             this.setState({
                 paths
             })
@@ -31,10 +32,19 @@ class AddesPaths extends React.Component {
     componentDidMount() {
         this.getPaths();
     }
+    renderList(){
+        this.state.paths.map(el=>{
+            return(
+             <>
+             </>     
+            )
+        })
+    }
     render() {
         return (
             <>
                 <Typography> hello</Typography>
+                {this.renderList()}
             </>
         )
     }

@@ -21,8 +21,6 @@ import firebase from "firebase";
 import origen from '../../Images/origen.png'
 import placeholder from '../../Images/placeholder.png'
 import timeOut from '../../Images/timeOut.png'
-import automobile from '../../Images/automobile.png'
-import passangers from '../../Images/passanger.png'
 import handshake from '../../Images/handshake.png'
 import comment from '../../Images/comment.png'
 
