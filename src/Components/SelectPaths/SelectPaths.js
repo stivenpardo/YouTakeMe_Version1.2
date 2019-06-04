@@ -33,73 +33,73 @@ class SelectPath extends React.Component {
     render() {
         return (
             <>
-                
+
                 <Typography>Seleccione su ruta </Typography>
-                <br/>
+                <br />
                 <Card >
-                            <CardHeader
-                                avatar={
-                                    <Avatar aria-label="Recipe" >
-                                        R
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="Recipe" >
+                                R
                                      </Avatar>
-                                }
-                                action={
-                                    <IconButton>
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                }
-                                title="Nombre del usuario"
-                                subheader="Fecha y hora actualizada cuando habilita la ruta "
-                            />
-                            <CardMedia
-                                image=""
-                                title="Paella dish"
-                            />
-                            <CardContent>
-                                <Typography component="p">
-                                    información sobre la ruta que brinda el usuario
+                        }
+                        action={
+                            <IconButton>
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
+                        title="Nombre del usuario"
+                        subheader="Fecha y hora actualizada cuando habilita la ruta "
+                    />
+                    <CardMedia
+                        image=""
+                        title="Paella dish"
+                    />
+                    <CardContent>
+                        <Typography component="p">
+                            información sobre la ruta que brinda el usuario
                                 </Typography>
-                            </CardContent>
-                            <CardActions disableActionSpacing>
-                                <IconButton aria-label="Add to favorites">
-                                    <FavoriteIcon />
-                                </IconButton>
-                                <IconButton aria-label="Share">
-                                    <ShareIcon />
-                                </IconButton>
-                                <IconButton
-                                    onClick={this.handleExpandClick.bind(this)}
-                                    aria-expanded={this.state.expanded}
-                                    aria-label="Show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions>
-                            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography paragraph>Informacion sobre el conductor: </Typography>
-                                    <Typography paragraph>
-                                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                                        minutes.
+                    </CardContent>
+                    <CardActions disableActionSpacing>
+                        <IconButton aria-label="Add to favorites">
+                            <FavoriteIcon />
+                        </IconButton>
+                        <IconButton aria-label="Share">
+                            <ShareIcon />
+                        </IconButton>
+                        <IconButton
+                            onClick={this.handleExpandClick.bind(this)}
+                            aria-expanded={this.state.expanded}
+                            aria-label="Show more"
+                        >
+                            <ExpandMoreIcon />
+                        </IconButton>
+                    </CardActions>
+                    <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                        <CardContent>
+                            <Typography paragraph>Informacion sobre el conductor: </Typography>
+                            <Typography paragraph>
+                                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+                                minutes.
                                     </Typography>
-                                    <Typography paragraph>
-                                        Heat oil in a (14- t
+                            <Typography paragraph>
+                                Heat oil in a (14- t
                                     </Typography>
-                                    <Typography paragraph>
-                                        Add rice a
+                            <Typography paragraph>
+                                Add rice a
                                     </Typography>
-                                    <Typography>
-                                        Set aside off 
+                            <Typography>
+                                Set aside off
                                     </Typography>
-                                </CardContent>
-                            </Collapse>
-                        </Card>
+                        </CardContent>
+                    </Collapse>
+                </Card>
                 <Grid container item xs={12}>
                     <Grid item xs={3}>
                         {/* of 3 */}
                     </Grid>
                     <Grid item xs={6}>
-                        
+
                     </Grid>
                     <Grid item xs={3}>
                         {/* of 3 */}

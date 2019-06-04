@@ -112,7 +112,7 @@ class RegisterVehicule extends React.Component {
 
   setVehiculo() {
     var userId = firebase.auth().currentUser.uid;
-    firebase.database().ref('usuarios/'+userId+'/vehiculos/' + this.state.placa).set({
+    firebase.database().ref('usuarios/' + userId + '/vehiculos/' + this.state.placa).set({
       tipoVehiculo: this.state.tipoVehiculo,
       modelo: this.state.modelo,
     });

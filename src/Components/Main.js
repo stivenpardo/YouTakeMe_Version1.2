@@ -200,7 +200,9 @@ class MainConcent extends React.Component {
                                             {this.state.userAccount == null ? <AccountCircle /> : <Avatar alt="Usuario" src={this.state.userAccount.photoURL} />}
 
                                         </IconButton>
-                                        <Menu
+                                        {
+                                            this.state.userAccount==null?
+                                            <Menu
                                             id="menu-appbar"
                                             anchorEl={this.state.anchorEl}
                                             anchorOrigin={{
@@ -213,7 +215,7 @@ class MainConcent extends React.Component {
                                             }}
                                             open={open}
                                             onClose={this.handleClose.bind(this)}
-                                        >
+                                            >
                                             <ExpansionPanel>
                                                 <ExpansionPanelSummary
                                                 expandIcon={<ExpandMoreIcon />}
@@ -232,9 +234,27 @@ class MainConcent extends React.Component {
                                                 </Typography>
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
-                                                                                                                                  
+                                        </Menu>
+                                        :
+                                        <Menu
+                                            id="menu-appbar"
+                                            anchorEl={this.state.anchorEl}
+                                            anchorOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            transformOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            open={open}
+                                            onClose={this.handleClose.bind(this)}
+                                        >
+                                            <MenuItem disabled={true}> {this.state.userAccount.displayName}</MenuItem>
+                                            <MenuItem onClick={this.handleClose.bind(this)}>Favoritos</MenuItem>                                                                                    
                                             <MenuItem onClick={this.logOut.bind(this)}>Salir</MenuItem>
                                         </Menu>
+                                    }
                                     </div>
                                 )}
                             </Toolbar>

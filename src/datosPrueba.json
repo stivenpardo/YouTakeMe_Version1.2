@@ -1,0 +1,27 @@
+{"productos":[
+    {
+      "label": "Bebidas",
+      "imgPath":
+        "https://www.ambitojuridico.com/sites/default/files/tiendadebarrio-refrigeradores-gaseosaarchivo.jpg"
+    },
+    {
+      "label": "Miscelanea",
+      "imgPath":
+        "https://res.cloudinary.com/civico/image/upload/c_fit,f_auto,fl_lossy,h_1200,q_auto:low,w_1200/v1432829779/entity/image/file/060/000/55673f27b9dd5daffe000060.jpg"
+    },
+    {
+      "label": "Granos",
+      "imgPath":
+        "http://www.eluniversal.com.co/sites/default/files/201504/facetas_tienda_4.jpg"
+    },
+    {
+      "label": "Productos de galeria",
+      "imgPath":
+        "https://www.eldiario.es/canariasahora/economia/Imagen-expositor-productos-vegetales-frescos_EDIIMA20150828_0768_18.jpg"
+    },
+    {
+      "label": "Productos de aseo",
+      "imgPath":
+        "https://1.bp.blogspot.com/-Fdixo452ENg/WL_BaDfZMRI/AAAAAAAAAG0/KiUXexRrz4oZ2bF7_hELWbzzmq5BvHm-ACEw/s1600/venta-de-productos-para-el-aseo-higiene-personal-en-logrono.jpg"
+    }
+  ]}

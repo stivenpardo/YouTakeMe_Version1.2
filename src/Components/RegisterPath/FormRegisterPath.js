@@ -32,6 +32,7 @@ class FormRegisterPath extends React.Component {
         this.state = {
             openVehicule: false,
             //openPassenger: false,
+            placas: [],
             value: 0,
             view: 0,
             loading: false,
@@ -53,7 +54,7 @@ class FormRegisterPath extends React.Component {
         this.setState({ open: true })
     }
 
-    handleTextFiledChange = prop => event => {      
+    handleTextFiledChange = prop => event => {
         this.setState({ [prop]: event.target.value });
     }
 
@@ -67,9 +68,9 @@ class FormRegisterPath extends React.Component {
             this.setState(
                 {
                     success: false,
-                    loading: true,                   
+                    loading: true,
                 },
-                
+
                 () => {
                     this.timer = setTimeout(() => {
                         this.setState({
@@ -78,39 +79,50 @@ class FormRegisterPath extends React.Component {
                         });
                     }, 2000);
                 },
-                this.setPath() 
+                this.setPath()
             );
         }
     };
 
     getVehicule() {
         var userId = firebase.auth().currentUser.uid;
-        return firebase.database().ref('/usuarios/' + userId).once('value').then(function (snapshot) {
-            var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        return firebase.database().ref('usuarios/' + userId + '/vehiculos/').once('value').then((snapshot) => {
+            var placas = snapshot.val();
+            this.setState({
+                placas
+            })
+
         });
+    }
+    renderVehicules() {
+        return this.state.placas.map(placa => {
+            return (
+                <MenuItem value={placa} />
+            )
+        })
     }
     setPath() {
         var userId = firebase.auth().currentUser.uid;
-        firebase.database().ref('usuarios/'+userId+'/paths/'+this.state.destination).set({
-          origin: this.state.origin,
-          departureTime: this.state.departureTime,
-          typeVehicule: this.state.tipoVehiculo,
-          numberPassenger: this.state.numberPassenger,
-          meetingPoint: this.state.meetingPoint,
-          comment: this.state.comment,
-        }, (error)=>{
-            if(error) {
+        firebase.database().ref('usuarios/' + userId + '/paths/' + this.state.destination).set({
+            origin: this.state.origin,
+            departureTime: this.state.departureTime,
+            typeVehicule: this.state.tipoVehiculo,
+            numberPassenger: this.state.numberPassenger,
+            meetingPoint: this.state.meetingPoint,
+            comment: this.state.comment,
+        }, (error) => {
+            if (error) {
                 console.error("error")
             } else {
                 this.clearForm();
             }
         });
-      }
+    }
     clearForm() {
         let registerPath = ['origin', 'destination', 'departureTime', 'tipoVehiculo', 'numberPassenger', 'meetingPoint', 'comment']
 
         registerPath.forEach(element => {
-                this.setState({[element]:""})
+            this.setState({ [element]: "" })
         })
     }
     componentWillUnmount() {
@@ -121,145 +133,147 @@ class FormRegisterPath extends React.Component {
         const { loading, success } = this.state;
         return (
             <div>
-                
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="origin"
-                                value={this.state.origin}
-                                label="Origen"
-                                type="text"
-                                onChange={this.handleTextFiledChange("origin")}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            < img src={origen}/>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                style={styles.textfiels}
-                            />
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="destination"
-                                value={this.state.destination}
-                                label="Destino"
-                                type="text"
-                                onChange={this.handleTextFiledChange("destination")}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            < img src={placeholder}/>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                style={styles.textfiels}
-                            />
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="departureTime"
-                                value={this.state.departureTime}
-                                label="Hora de salida"
-                                type="time"
-                                defaultValue="00:00"
-                                onChange={this.handleTextFiledChange("departureTime")}
-                                //className={classes.textField}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                inputProps={{
-                                    step: 300, // 5 min
-                                }}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            < img src={timeOut}/>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                style={styles.textfiels}
-                            />
-                            <FormControl style={styles.textfiels}>
-                                <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
-                                <Select
-                                    open={this.state.open}
-                                    onClose={this.handleClose.bind(this)}
-                                    onOpen={this.handleOpen.bind(this)}
-                                    onChange={this.handleTextFiledChange("tipoVehiculo")}
-                                    value={this.state.tipoVehiculo}
-                                    inputProps={{
-                                        name: 'tipoVehiculo',
-                                        id: 'tipoVehiculo',
-                                    }}            
-                                    
-                                >
-                                    <MenuItem value={'carro'}>Que amuestre los vehiculos registrados</MenuItem>
-                                    <MenuItem value={'Moto'}>Moto</MenuItem>
-                                    <MenuItem value={'taxi'}>Taxi</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <FormControl style={styles.textfiels}>
-                                <InputLabel htmlFor="demo-controlled-open-select"> Numero de pasajeros</InputLabel>
-                                <Select
-                                    open={this.state.open}
-                                    onClose={this.handleClose.bind(this)}
-                                    onOpen={this.handleOpen.bind(this)}
-                                    onChange={this.handleTextFiledChange("numberPassenger")}
-                                    value={this.state.numberPassenger}
-                                    inputProps={{
-                                        name: 'numberPassenger',
-                                        id: 'numberPassenger',
-                                    }}
-                                    
-                                >
-                                    <MenuItem value={1}>1</MenuItem>
-                                    <MenuItem value={2}>2</MenuItem>
-                                    <MenuItem value={3}>3</MenuItem>
-                                    <MenuItem value={4}>4</MenuItem>
 
-                                </Select>
-                            </FormControl>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="meetingPoint"
-                                value={this.state.meetingPoint}
-                                label="Punto de encuentro"
-                                type="text"
-                                onChange={this.handleTextFiledChange("meetingPoint")}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            < img src={handshake}/>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                style={styles.textfiels}
-                            />
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="comment"
-                                value={this.state.comment}
-                                label="Comentario"
-                                type="area"
-                                onChange={this.handleTextFiledChange("comment")}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <img src={comment}/>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                style={styles.textfiels}
-                            />
-                            <br />
-                            <Fab color="primary" style={styles.buttonSuccess} onClick={this.handleButtonClick}>
-                                {success ? <CheckIcon /> : <SaveIcon />}
-                            </Fab>
-                            {loading && <CircularProgress size={68} style={styles.fabProgress} />}
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="origin"
+                    value={this.state.origin}
+                    label="Origen"
+                    type="text"
+                    onChange={this.handleTextFiledChange("origin")}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                < img src={origen} />
+                            </InputAdornment>
+                        ),
+                    }}
+                    style={styles.textfiels}
+                />
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="destination"
+                    value={this.state.destination}
+                    label="Destino"
+                    type="text"
+                    onChange={this.handleTextFiledChange("destination")}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                < img src={placeholder} />
+                            </InputAdornment>
+                        ),
+                    }}
+                    style={styles.textfiels}
+                />
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="departureTime"
+                    value={this.state.departureTime}
+                    label="Hora de salida"
+                    type="time"
+                    defaultValue="00:00"
+                    onChange={this.handleTextFiledChange("departureTime")}
+                    //className={classes.textField}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    inputProps={{
+                        step: 300, // 5 min
+                    }}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                < img src={timeOut} />
+                            </InputAdornment>
+                        ),
+                    }}
+                    style={styles.textfiels}
+                />
+                <FormControl style={styles.textfiels}>
+                    <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
+                    <Select
+                        open={this.state.open}
+                        onClose={this.handleClose.bind(this)}
+                        onOpen={this.handleOpen.bind(this)}
+                        onChange={this.handleTextFiledChange("tipoVehiculo")}
+                        value={this.state.tipoVehiculo}
+                        inputProps={{
+                            name: 'tipoVehiculo',
+                            id: 'tipoVehiculo',
+                        }}
+
+                    >
+                        <MenuItem value={'carro'}>carro</MenuItem>
+                        <MenuItem value={'Moto'}>Moto</MenuItem>
+                        <MenuItem value={'taxi'}>Taxi</MenuItem>
+                        {/*this.renderVehicules()*/}
+                        {/*console.log("este es : "+ this.state.placas)*/}
+                    </Select>
+                </FormControl>
+                <FormControl style={styles.textfiels}>
+                    <InputLabel htmlFor="demo-controlled-open-select"> Numero de pasajeros</InputLabel>
+                    <Select
+                        open={this.state.open}
+                        onClose={this.handleClose.bind(this)}
+                        onOpen={this.handleOpen.bind(this)}
+                        onChange={this.handleTextFiledChange("numberPassenger")}
+                        value={this.state.numberPassenger}
+                        inputProps={{
+                            name: 'numberPassenger',
+                            id: 'numberPassenger',
+                        }}
+
+                    >
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+
+                    </Select>
+                </FormControl>
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="meetingPoint"
+                    value={this.state.meetingPoint}
+                    label="Punto de encuentro"
+                    type="text"
+                    onChange={this.handleTextFiledChange("meetingPoint")}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                < img src={handshake} />
+                            </InputAdornment>
+                        ),
+                    }}
+                    style={styles.textfiels}
+                />
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="comment"
+                    value={this.state.comment}
+                    label="Comentario"
+                    type="area"
+                    onChange={this.handleTextFiledChange("comment")}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <img src={comment} />
+                            </InputAdornment>
+                        ),
+                    }}
+                    style={styles.textfiels}
+                />
+                <br />
+                <Fab color="primary" style={styles.buttonSuccess} onClick={this.handleButtonClick}>
+                    {success ? <CheckIcon /> : <SaveIcon />}
+                </Fab>
+                {loading && <CircularProgress size={68} style={styles.fabProgress} />}
 
 
             </div>
