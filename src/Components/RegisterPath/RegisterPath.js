@@ -16,7 +16,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import theme from '../../theme2';
 import firebase from "firebase";
 import FormRegisterPaths from './FormRegisterPath';
-import addesPaths from './AddesPaths';
+import AddesPaths from './AddesPaths';
 
 function TabContainer(props) {
     return (
@@ -94,7 +94,7 @@ class RegisterPath extends React.Component {
                     onChangeIndex={this.handleChangeIndex.bind(this)}
                 >
                     <TabContainer> <FormRegisterPaths/> </TabContainer>
-                    <TabContainer > <addesPaths/> </TabContainer>
+                    <TabContainer > <AddesPaths/> </TabContainer>
                     <TabContainer >item 3</TabContainer>
                 </SwipeableViews>
                 <Map style={styles.map} google={this.props.google} zoom={14}>

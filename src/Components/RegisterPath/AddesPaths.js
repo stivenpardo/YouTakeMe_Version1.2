@@ -1,6 +1,7 @@
 import React from 'react'; 
 import firebase from 'firebase';
 import { Typography } from '@material-ui/core';
+
 class AddesPaths extends React.Component {
 
     constructor(props){
@@ -20,7 +21,7 @@ class AddesPaths extends React.Component {
     }
     getPaths() {
         var userId = firebase.auth().currentUser.uid;
-        return firebase.database().ref('/usuarios/' + userId+'/paths/').once('value').then(function (snapshot) {
+        return firebase.database().ref('/usuarios/' + userId+'/paths/'+'destination').once('value').then(function (snapshot) {
         var paths = snapshot.val();
         this.setState({
             paths
@@ -33,7 +34,7 @@ class AddesPaths extends React.Component {
     render(){
         return(
             <>
-                <Typography> {this.state.paths} </Typography>
+                <Typography> hellow</Typography>
             </>
         )
     }
