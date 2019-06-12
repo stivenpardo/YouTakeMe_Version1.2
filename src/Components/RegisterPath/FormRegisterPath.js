@@ -85,7 +85,7 @@ class FormRegisterPath extends React.Component {
     getVehicule() {
         var userId = firebase.auth().currentUser.uid;
         return firebase.database().ref('usuarios/' + userId + '/vehiculos/').once('value').then((snapshot) => {
-            var placas = snapshot.val();
+            var placas = Object.keys(snapshot.val());
             this.setState({
                 placas
             })
@@ -95,15 +95,16 @@ class FormRegisterPath extends React.Component {
     renderVehicules() {
         return this.state.placas.map(placa => {
             return (
-                <MenuItem value={placa} />
+                <MenuItem>{placa}</MenuItem>
             )
         })
     }
     setPath() {
         var userId = firebase.auth().currentUser.uid;
-        firebase.database().ref('usuarios/' + userId + '/paths/' + this.state.destination).set({
+        firebase.database().ref('usuarios/' + userId + '/paths/' + this.state.currentPath).set({
             origin: this.state.origin,
             departureTime: this.state.departureTime,
+            destination:this.state.destination,
             typeVehicule: this.state.tipoVehiculo,
             numberPassenger: this.state.numberPassenger,
             meetingPoint: this.state.meetingPoint,
@@ -125,6 +126,9 @@ class FormRegisterPath extends React.Component {
     }
     componentWillUnmount() {
         clearTimeout(this.timer);
+    }
+    componentDidMount(){
+        this.getVehicule();
     }
     render() {
         const { styles } = theme;
@@ -192,7 +196,7 @@ class FormRegisterPath extends React.Component {
                     style={styles.textfiels}
                 />
                 <FormControl style={styles.textfiels}>
-                    <InputLabel htmlFor="demo-controlled-open-select"> Tipo de vehiculo</InputLabel>
+                    <InputLabel htmlFor="demo-controlled-open-select"> Seleccione el vehiculo</InputLabel>
                     <Select
                         open={this.state.open}
                         onClose={this.handleClose.bind(this)}
@@ -205,11 +209,7 @@ class FormRegisterPath extends React.Component {
                         }}
 
                     >
-                        <MenuItem value={'carro'}>carro</MenuItem>
-                        <MenuItem value={'Moto'}>Moto</MenuItem>
-                        <MenuItem value={'taxi'}>Taxi</MenuItem>
-                        {/*this.renderVehicules()*/}
-                        {/*console.log("este es : "+ this.state.placas)*/}
+                        {this.state.placas!=null?this.renderVehicules():""}
                     </Select>
                 </FormControl>
                 <FormControl style={styles.textfiels}>
