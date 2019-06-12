@@ -29,11 +29,17 @@ class RegisterVehicule extends React.Component {
       tipoVehiculo: "",
       placa: "",
       modelo: "",
+      fileVehicule:"",
     }
   }
 
   updateDataform(formValue) {
     this.setState(formValue);
+  }
+  handleFile = prop => event => {
+    this.setState({ [prop]: event.target.value });
+    console.log(event)
+
   }
   getStepContent(stepIndex) {
     switch (stepIndex) {
@@ -46,17 +52,18 @@ class RegisterVehicule extends React.Component {
           <br />
           <Grid container spacing={0} direction="column" alignItems="center" justify="center">
             <input
-              accept="image/*"
+              accept= "image/*"
               style={theme.styles.input}
               id="file-car"
-              multiple
               type="file"
+              value={this.state.fileVehicule}
+              onchange={this.handleFile("fileVehicule")}
             />
             <label htmlFor="file-car">
               <Button variant="outlined" component="span"  >
                 <CloudUploadIcon style={theme.styles.rightIcon} />
                 Subir
-                    </Button>
+              </Button>
             </label>
           </Grid>
         </div>
@@ -69,11 +76,11 @@ class RegisterVehicule extends React.Component {
             <input
               accept="image/*"
               style={theme.styles.input}
-              id="file-car"
+              id="file-driver"
               multiple
               type="file"
             />
-            <label htmlFor="file-car">
+            <label htmlFor="file-driver">
               <Button variant="outlined" component="span"  >
                 <CloudUploadIcon style={theme.styles.rightIcon} />
                 Subir
@@ -85,6 +92,15 @@ class RegisterVehicule extends React.Component {
         return 'Unknown stepIndex';
     }
   }
+  storageImagesVehicule = () =>{
+    var storageRef = firebase.storage().ref();
+    /*var mountainImagesRef = storageRef.child('images/mountains.jpg');*/
+    var file = storageRef.child(this.state.fileVehicule);
+    ref.put(file).then(function(snapshot) {
+    console.log('Uploaded a blob or file!');
+});
+   
+  }
 
   handleNext = () => {
     this.setState(state => ({
@@ -95,6 +111,7 @@ class RegisterVehicule extends React.Component {
     if (activeStep === steps.length - 1) {
       //guardar
       this.setVehiculo();
+      this.storageImagesVehicule();
     }
   }
 

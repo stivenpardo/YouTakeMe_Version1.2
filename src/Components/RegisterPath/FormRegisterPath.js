@@ -86,6 +86,7 @@ class FormRegisterPath extends React.Component {
         var userId = firebase.auth().currentUser.uid;
         return firebase.database().ref('usuarios/' + userId + '/vehiculos/').once('value').then((snapshot) => {
             var placas = Object.keys(snapshot.val());
+            console.log(placas)
             this.setState({
                 placas
             })
