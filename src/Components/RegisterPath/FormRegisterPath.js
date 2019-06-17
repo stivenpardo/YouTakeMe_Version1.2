@@ -96,7 +96,7 @@ class FormRegisterPath extends React.Component {
     renderVehicules() {
         return this.state.placas.map(placa => {
             return (
-                <MenuItem>{placa}</MenuItem>
+                <MenuItem value={placa}>{placa}</MenuItem>
             )
         })
     }
@@ -208,8 +208,7 @@ class FormRegisterPath extends React.Component {
                             name: 'tipoVehiculo',
                             id: 'tipoVehiculo',
                         }}
-
-                    >
+                    >                        
                         {this.state.placas!=null?this.renderVehicules():""}
                     </Select>
                 </FormControl>
